@@ -90,19 +90,20 @@
 
 
 
-<meta name="description" content="首先Pagination是JQuery一款十分经典的分页插件插件，原理是一次性加载所有数据，所以页面之间跳转流畅，小数据量推荐使用，大数据量首页加载太慢。最近公司做一个项目用到Pagination发现这个弊端后和后台商量了一个投机取巧的方式，就是每进入一个新的分页都要请求一次ajax，算是解决了这个问题。 一、pagination使用方法1、使用方法跟一般的jQuery插件一样，此插件使用也很简单">
+<meta name="description" content="首先Pagination是JQuery一款十分经典的分页插件插件，原理是一次性加载所有数据，所以页面之间跳转流畅，小数据量推荐使用，大数据量首页加载太慢。最近公司做一个项目用到Pagination发现这个弊端后和后台商量了一个投机取巧的方式，就是每进入一个新的分页都要请求一次ajax，算是解决了这个问题。">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pagination用法总结">
 <meta property="og:url" content="https://github.com/blalablack/blog/2017/05/26/pagination/index.html">
 <meta property="og:site_name" content="Lip的个人博客">
-<meta property="og:description" content="首先Pagination是JQuery一款十分经典的分页插件插件，原理是一次性加载所有数据，所以页面之间跳转流畅，小数据量推荐使用，大数据量首页加载太慢。最近公司做一个项目用到Pagination发现这个弊端后和后台商量了一个投机取巧的方式，就是每进入一个新的分页都要请求一次ajax，算是解决了这个问题。 一、pagination使用方法1、使用方法跟一般的jQuery插件一样，此插件使用也很简单">
-<meta property="og:image" content="https://github.com/bloghe/images/xiaoguo.png">
-<meta property="og:updated_time" content="2017-05-29T00:37:37.915Z">
+<meta property="og:description" content="首先Pagination是JQuery一款十分经典的分页插件插件，原理是一次性加载所有数据，所以页面之间跳转流畅，小数据量推荐使用，大数据量首页加载太慢。最近公司做一个项目用到Pagination发现这个弊端后和后台商量了一个投机取巧的方式，就是每进入一个新的分页都要请求一次ajax，算是解决了这个问题。">
+<meta property="og:image" content="https://github.com/blog/myimages/xiaoguo.png">
+<meta property="og:image" content="https://github.com/blog/myimages/canshu.png">
+<meta property="og:updated_time" content="2017-05-29T00:44:24.723Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pagination用法总结">
-<meta name="twitter:description" content="首先Pagination是JQuery一款十分经典的分页插件插件，原理是一次性加载所有数据，所以页面之间跳转流畅，小数据量推荐使用，大数据量首页加载太慢。最近公司做一个项目用到Pagination发现这个弊端后和后台商量了一个投机取巧的方式，就是每进入一个新的分页都要请求一次ajax，算是解决了这个问题。 一、pagination使用方法1、使用方法跟一般的jQuery插件一样，此插件使用也很简单">
-<meta name="twitter:image" content="https://github.com/bloghe/images/xiaoguo.png">
+<meta name="twitter:description" content="首先Pagination是JQuery一款十分经典的分页插件插件，原理是一次性加载所有数据，所以页面之间跳转流畅，小数据量推荐使用，大数据量首页加载太慢。最近公司做一个项目用到Pagination发现这个弊端后和后台商量了一个投机取巧的方式，就是每进入一个新的分页都要请求一次ajax，算是解决了这个问题。">
+<meta name="twitter:image" content="https://github.com/blog/myimages/xiaoguo.png">
 
 
 
@@ -346,9 +347,13 @@
       
 
       
-        <p>首先Pagination是JQuery一款十分经典的分页插件插件，原理是一次性加载所有数据，所以页面之间跳转流畅，小数据量推荐使用，大数据量首页加载太慢。最近公司做一个项目用到Pagination发现这个弊端后和后台商量了一个投机取巧的方式，就是每进入一个新的分页都要请求一次ajax，算是解决了这个问题。</p>
-<h2 id="一、pagination使用方法"><a href="#一、pagination使用方法" class="headerlink" title="一、pagination使用方法"></a>一、pagination使用方法</h2><h3 id="1、使用方法"><a href="#1、使用方法" class="headerlink" title="1、使用方法"></a>1、使用方法</h3><p>跟一般的jQuery插件一样，此插件使用也很简单便捷。方法是pagination，例如<code>$(&quot;#page&quot;).pagination(100);</code>，这里的100参数是必须的，表示显示项目的总个数，这是最简单的使用，得到的显示如下：<br><img src="/bloghe/images/xiaoguo.png" alt="Alt text"></p>
-<h3 id="2、参数详解"><a href="#2、参数详解" class="headerlink" title="2、参数详解"></a>2、参数详解</h3><h3 id="3、使用举例"><a href="#3、使用举例" class="headerlink" title="3、使用举例"></a>3、使用举例</h3><h2 id="二、paginationJS源码解析"><a href="#二、paginationJS源码解析" class="headerlink" title="二、paginationJS源码解析"></a>二、paginationJS源码解析</h2><h2 id="三、paginationCSS样式介绍"><a href="#三、paginationCSS样式介绍" class="headerlink" title="三、paginationCSS样式介绍"></a>三、paginationCSS样式介绍</h2><h2 id="四、TODO事宜"><a href="#四、TODO事宜" class="headerlink" title="四、TODO事宜"></a>四、TODO事宜</h2>
+        <p>首先Pagination是JQuery一款十分经典的分页插件插件，原理是一次性加载所有数据，所以页面之间跳转流畅，小数据量推荐使用，大数据量首页加载太慢。最近公司做一个项目用到Pagination发现这个弊端后和后台商量了一个投机取巧的方式，就是每进入一个新的分页都要请求一次ajax，算是解决了这个问题。<a id="more"></a></p>
+<h2 id="一、pagination使用方法"><a href="#一、pagination使用方法" class="headerlink" title="一、pagination使用方法"></a>一、pagination使用方法</h2><h3 id="1、使用方法"><a href="#1、使用方法" class="headerlink" title="1、使用方法"></a>1、使用方法</h3><p>跟一般的jQuery插件一样，此插件使用也很简单便捷。方法是pagination，例如<code>$(&quot;#page&quot;).pagination(100);</code>，这里的100参数是必须的，表示显示项目的总个数，这是最简单的使用，得到的显示如下：<br><img src="/blog/myimages/xiaoguo.png" alt="Alt text"></p>
+<h3 id="2、参数详解"><a href="#2、参数详解" class="headerlink" title="2、参数详解"></a>2、参数详解</h3><p>不BB多了，直接上图：<br><img src="/blog/myimages/canshu.png" alt=""></p>
+<h3 id="3、使用举例"><a href="#3、使用举例" class="headerlink" title="3、使用举例"></a>3、使用举例</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#Pagination"</span>).pagination(<span class="number">56</span>, &#123;</div><div class="line"><span class="symbol">    num_edge_entries:</span> <span class="number">2</span>,</div><div class="line"><span class="symbol">    num_display_entries:</span> <span class="number">4</span>,</div><div class="line"><span class="symbol">    callback:</span> pageselectCallback,</div><div class="line"><span class="symbol">    items_per_page:</span><span class="number">1</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这段代码表示的含义是：总共有56(maxentries)个列表项，首尾两侧分页显示2(num_edge_entries)个，连续分页主体数目显示4(num_display_entries)个，回调函数为pageselectCallback(callback)，每页显示的列表项为1(items_per_page)。您可以对照参数表修改配置这里的参数。</p>
+<h2 id="二、paginationJS源码解析"><a href="#二、paginationJS源码解析" class="headerlink" title="二、paginationJS源码解析"></a>二、paginationJS源码解析</h2><p>1、JS源码：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<h2 id="三、paginationCSS样式介绍"><a href="#三、paginationCSS样式介绍" class="headerlink" title="三、paginationCSS样式介绍"></a>三、paginationCSS样式介绍</h2><h2 id="四、TODO事宜"><a href="#四、TODO事宜" class="headerlink" title="四、TODO事宜"></a>四、TODO事宜</h2>
       
     </div>
 
