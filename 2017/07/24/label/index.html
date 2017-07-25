@@ -90,17 +90,19 @@
 
 
 
-<meta name="description" content="最近遇到一个关于console.log奇怪的问题，搞得我是百思不得其解，写出来做一下记录:">
+<meta name="description" content="这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。">
 <meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="console.log一个奇怪的问题">
-<meta property="og:url" content="https://github.com/blalablack/blog/2017/07/01/console/index.html">
+<meta property="og:title" content="label">
+<meta property="og:url" content="https://github.com/blalablack/blog/2017/07/24/label/index.html">
 <meta property="og:site_name" content="Lip的个人博客">
-<meta property="og:description" content="最近遇到一个关于console.log奇怪的问题，搞得我是百思不得其解，写出来做一下记录:">
-<meta property="og:updated_time" content="2017-07-01T09:57:29.052Z">
+<meta property="og:description" content="这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。">
+<meta property="og:image" content="https://github.com/blog/myimages/label/p1.png">
+<meta property="og:updated_time" content="2017-07-24T09:49:44.695Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="console.log一个奇怪的问题">
-<meta name="twitter:description" content="最近遇到一个关于console.log奇怪的问题，搞得我是百思不得其解，写出来做一下记录:">
+<meta name="twitter:title" content="label">
+<meta name="twitter:description" content="这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。">
+<meta name="twitter:image" content="https://github.com/blog/myimages/label/p1.png">
 
 
 
@@ -128,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/blalablack/blog/2017/07/01/console/"/>
+  <link rel="canonical" href="https://github.com/blalablack/blog/2017/07/24/label/"/>
 
 
 
 
 
-  <title>console.log一个奇怪的问题 | Lip的个人博客</title>
+  <title>label | Lip的个人博客</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -263,7 +265,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/blog/2017/07/01/console/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/blog/2017/07/24/label/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lip">
@@ -284,7 +286,7 @@
             
             
               
-                console.log一个奇怪的问题
+                label
               
             
           </h1>
@@ -299,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-01T17:22:16+08:00">
-                2017-07-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T16:13:26+08:00">
+                2017-07-24
               </time>
             
 
@@ -334,14 +336,11 @@
       
 
       
-        <p>最近遇到一个关于console.log奇怪的问题，搞得我是百思不得其解，写出来做一下记录:<br><a id="more"></a><br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a=&#123;<span class="built_in">name</span>:<span class="number">1</span>&#125;;</div><div class="line">console.<span class="built_in">log</span>(a);</div><div class="line">a.<span class="built_in">name</span>=<span class="number">2</span>;</div><div class="line">console.<span class="built_in">log</span>(a);</div></pre></td></tr></table></figure></p>
-<p>结果显而易见是name:1;name:2啊，但打开控制台，呵呵：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span> </div><div class="line">	name: <span class="string">"2"</span></div><div class="line">	__proto__: <span class="built_in">Object</span></div><div class="line"><span class="built_in">Object</span></div><div class="line">	name: <span class="string">"2"</span></div><div class="line">	__proto__: <span class="built_in">Object</span></div></pre></td></tr></table></figure></p>
-<p>完了感觉自己白学js了，当我抱着怀疑人生的态度刷新了一遍浏览器之后，终于见到我想见的答案了：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span> </div><div class="line">	name: <span class="string">"1"</span></div><div class="line">	__proto__: <span class="built_in">Object</span></div><div class="line"><span class="built_in">Object</span></div><div class="line">	name: <span class="string">"2"</span></div><div class="line">	__proto__: <span class="built_in">Object</span></div></pre></td></tr></table></figure>
-<p>之所以会出现这样的结果是因为<strong>代码在运行的时候控制台并没有打开</strong>。<br>console并不是JavaScript的对象，而是浏览器提供的方法，只有当你打开控制台是它才生效，所以当你打开网页代码执行完毕之后,console.log并没有执行，而是等到你打开控制台之后才会执行，这时的a早已经不是原来的单纯的a了。也就是相当于这样的执行顺序：<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = &#123;<span class="built_in">name</span>: <span class="string">'1'</span>&#125;;</div><div class="line">a.<span class="built_in">name</span> = <span class="string">'2'</span>;</div><div class="line">console.<span class="built_in">log</span>(a);</div><div class="line">console.<span class="built_in">log</span>(a);</div></pre></td></tr></table></figure></p>
-<p>而你在打开控制台之后再刷新页面得到的也就是之前正常的顺序了。<br>感觉浏览器厂商这么做也是有一定道理的，既然你console.log了肯定是要打开控制台调试的嘛，你不打开控制台看那我也就不执行多余的console操作了，节省了内存。</p>
-<p>最后还有一个问题没有解决：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"page"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line"><span class="keyword">var</span> a=<span class="built_in">document</span>.getElementById(<span class="string">"page"</span>);</div><div class="line"><span class="built_in">console</span>.log(a);</div><div class="line">a.appendChild(<span class="built_in">document</span>.createElement(<span class="string">"span"</span>));</div><div class="line"><span class="built_in">console</span>.log(a);</div><div class="line"></div><div class="line">得到结果：</div><div class="line">&lt;div id=<span class="string">"page"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">&lt;div id=<span class="string">"page"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
-<p>放心js是顺序执行的，但是无论我怎么刷新页面结果都是一样的，这就尴尬了。等待之后有机会在探讨吧，有哪位大神指导一下是最好的啦。</p>
+        <p>这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。<a id="more"></a></p>
+<h2 id="一、label触发两次的bug"><a href="#一、label触发两次的bug" class="headerlink" title="一、label触发两次的bug"></a>一、label触发两次的bug</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"checkbox"</span> id=<span class="string">"d2"</span> name=<span class="string">"age"</span>&gt;&lt;<span class="keyword">label</span> <span class="keyword">for</span>=<span class="string">"d2"</span>&gt;年龄&lt;/<span class="keyword">label</span>&gt;</div><div class="line">&lt;<span class="keyword">label</span>&gt;&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"checkbox"</span> name=<span class="string">"age"</span>&gt;年龄&lt;/<span class="keyword">label</span>&gt;</div></pre></td></tr></table></figure>
+<p>上面两种方式都可以实现label的效果，第二种省略了id和for也是可以的，简化了代码。对于事件绑定来说，你只要两种方式都绑定在input上就没有什么问题。但是如果你需要绑定在lable上，对于<code>&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;age&quot;&gt;年龄&lt;/label&gt;</code>这种来说就会触发两次。<br>解释：label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果您在 label 元素内点击文本，就会触发此控件。<strong>当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。</strong>也就是，当label执行click事件时，那么它会传递给input再执行一次同一click事件，而且事件源对象都是label。</p>
+<h2 id="二、一个不错的样式"><a href="#二、一个不错的样式" class="headerlink" title="二、一个不错的样式"></a>二、一个不错的样式</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">label</span>&#123;</div><div class="line">	<span class="attribute">cursor</span>: pointer;</div><div class="line">	<span class="attribute">display</span>: inline-block;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">label</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#fff</span>;</div><div class="line">   	<span class="attribute">border</span>: <span class="number">1px</span> solid <span class="built_in">rgba</span>(0,0,0,0.15);</div><div class="line">   	<span class="attribute">border-radius</span>: <span class="number">100%</span>;</div><div class="line">   	<span class="attribute">display</span>: inline-block;</div><div class="line">   	<span class="attribute">height</span>: <span class="number">16px</span>;</div><div class="line">   	<span class="attribute">margin-right</span>: <span class="number">10px</span>;</div><div class="line">   	<span class="attribute">margin-top</span>: -<span class="number">1px</span>;</div><div class="line">   	<span class="attribute">vertical-align</span>: middle;</div><div class="line">   	<span class="attribute">width</span>: <span class="number">16px</span>;</div><div class="line">   	<span class="attribute">line-height</span>: <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">label</span> <span class="selector-tag">input</span>&#123;</div><div class="line">	<span class="attribute">display</span>: none;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">label</span> <span class="selector-tag">input</span><span class="selector-pseudo">:checked</span> +<span class="selector-tag">span</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#cc80dd</span>;</div><div class="line">   	<span class="attribute">border-radius</span>: <span class="number">100%</span>;</div><div class="line">   	<span class="attribute">content</span>: <span class="string">""</span>;</div><div class="line">   	<span class="attribute">display</span>: inline-block;</div><div class="line">   	<span class="attribute">height</span>: <span class="number">12px</span>;</div><div class="line">   	<span class="attribute">margin</span>: <span class="number">2px</span>;</div><div class="line">   	<span class="attribute">width</span>: <span class="number">12px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果：<img src="/blog/myimages/label/p1.png" alt="展示效果"></p>
 
       
     </div>
@@ -378,18 +377,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/07/07/console打印dom对象/" rel="next" title="console打印dom对象">
-                <i class="fa fa-chevron-left"></i> console打印dom对象
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2017/05/26/pagination/" rel="prev" title="Pagination分页增加页面跳转功能">
-                Pagination分页增加页面跳转功能 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2017/07/16/探究this/" rel="prev" title="探究this">
+                探究this <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -437,8 +432,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/blog/images/touxiang.jpg"
@@ -493,6 +497,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、label触发两次的bug"><span class="nav-number">1.</span> <span class="nav-text">一、label触发两次的bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、一个不错的样式"><span class="nav-number">2.</span> <span class="nav-text">二、一个不错的样式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
