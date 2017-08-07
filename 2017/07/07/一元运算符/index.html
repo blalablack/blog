@@ -97,7 +97,7 @@
 <meta property="og:url" content="https://github.com/blalablack/blog/2017/07/07/一元运算符/index.html">
 <meta property="og:site_name" content="Lip的个人博客">
 <meta property="og:description" content="最近看到一个+new Date()的语法方式，就顺便研究了一下一元运算符，此篇主要介绍了一元运算符。">
-<meta property="og:updated_time" content="2017-07-07T12:29:12.917Z">
+<meta property="og:updated_time" content="2017-08-02T05:43:44.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一元运算符">
 <meta name="twitter:description" content="最近看到一个+new Date()的语法方式，就顺便研究了一下一元运算符，此篇主要介绍了一元运算符。">
@@ -340,6 +340,7 @@
 <h2 id="二、-a和a"><a href="#二、-a和a" class="headerlink" title="二、++a和a++"></a>二、++a和a++</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="number">3</span>;</div><div class="line"><span class="built_in">console</span>.log(++a);<span class="comment">//输出4</span></div><div class="line"><span class="keyword">var</span> b=<span class="number">3</span>;</div><div class="line"><span class="built_in">console</span>.log(b++);<span class="comment">//输出3</span></div></pre></td></tr></table></figure>
 <p>这个就是“先执行再运算”和“先运算再执行”，其实也好记，加号在前边就是先加自己在管其他。</p>
 <h2 id="三、void、delete"><a href="#三、void、delete" class="headerlink" title="三、void、delete"></a>三、void、delete</h2><h3 id="1、delete"><a href="#1、delete" class="headerlink" title="1、delete"></a>1、delete</h3><p>delete运算符可以将自定义的属性和方法删除：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>;</div><div class="line">o.name = <span class="string">"David"</span>;</div><div class="line">alert(o.name);	<span class="comment">//输出 "David"</span></div><div class="line"><span class="keyword">delete</span> o.name;</div><div class="line">alert(o.name);	<span class="comment">//输出 "undefined"</span></div></pre></td></tr></table></figure></p>
+<p>此运算符在发生原型遮蔽时删除属性：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">Person.prototype.name=<span class="string">"Lee"</span>;</div><div class="line"><span class="keyword">var</span> person1=<span class="keyword">new</span> Person();</div><div class="line">person1.name=<span class="string">"James"</span>;</div><div class="line"><span class="built_in">console</span>.log(person1.name);<span class="comment">//James</span></div><div class="line"><span class="comment">//这里不论是怎样赋值name(null或"")都只会在person1这个实例中修改，</span></div><div class="line"><span class="comment">//原型的方法还是会被遮蔽。这时delete方法的作用就体现出来了。</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> person1.name;</div><div class="line"><span class="built_in">console</span>.log(person1.name);<span class="comment">//Lee</span></div></pre></td></tr></table></figure></p>
 <p>同时我们也发现，对于Javascript内置的属性和方法是不行的:<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> o.<span class="built_in">toString</span>;//报错</div></pre></td></tr></table></figure></p>
 <p>toString()是JavaScript原生方法。</p>
 <h3 id="2、void"><a href="#2、void" class="headerlink" title="2、void"></a>2、void</h3><p>void 运算符对任何值返回 undefined。该运算符通常用于避免输出不应该输出的值。例如<code>&lt;a href=&quot;javascript:void(back())&quot;&gt;</code>这里点击a即执行了back事件，有避免了页面跳转。</p>
@@ -463,7 +464,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

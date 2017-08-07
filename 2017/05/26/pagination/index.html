@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://github.com/blog/myimages/pagination/p1.png">
 <meta property="og:image" content="https://github.com/blog/myimages/pagination/p2.png">
 <meta property="og:image" content="https://github.com/blog/myimages/pagination/p3.png">
-<meta property="og:updated_time" content="2017-07-25T01:42:35.810Z">
+<meta property="og:updated_time" content="2017-07-31T06:47:36.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pagination分页增加页面跳转功能">
 <meta name="twitter:description" content="Pagination是JQuery一款十分经典的分页插件，我在之前的基础上做了一点很小的改动：1、增加了页码输入跳转的功能，可以自己决定是否出现此功能。2、增加一个点击事件函数，返回点击的页码，可以实现ajax分次请求">
@@ -358,7 +358,7 @@
 <p>结果是page:3。上边a、b、包括后面的对象的地址都是指向堆中的同一个obj，所以b改变了a相应也会改变，同理上面的pannel和jq对象的引用相同panner改变this也会跟着改变。<br>强化理解<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">    obj.name=<span class="string">"小明"</span>;</div><div class="line">    obj=<span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">    obj.name=<span class="string">"小刚"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person=<span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">setName(person);</div><div class="line"><span class="built_in">console</span>.log(person.name)</div></pre></td></tr></table></figure></p>
 <p>结果：小明。首先创建一个person对象，person的地址就指向堆中一个object，调用setName是复制了person的地址给了obj，现在他们俩共同指向同一个object，于是改了obj的就相当于改了person的;接下来这个obj始乱终弃有指向了新的object2，也就和person再无任何瓜葛，他自己怎么玩是他自己的事情。所以最终结果是小明。  </p>
 <h3 id="2、注：dom元素和jq对象都是对象。"><a href="#2、注：dom元素和jq对象都是对象。" class="headerlink" title="2、注：dom元素和jq对象都是对象。"></a>2、注：dom元素和jq对象都是对象。</h3><p>$(“div”):这个类似于一个构造函数，把dom元素封装起来并添加相应jq的方法。dom元素可以直接影响这个新对象，但是这个对象不能影响dom元素（针对这个对象的操作，例如添加name方法）。<br><code>document.getElementById()</code>之类的：这是个选择器，他直接指向dom元素，dom和它相互影响。</p>
-<p>typeof用于检测简单类型。  </p>
+<p>typeof用于检测简单类型(具体说他是确定一个变量是字符串、数值、布尔值、还是undefined的最佳工具，注：null返回object)。  </p>
 <p>对于对象，我们更想知道的是什么类型的对象。所以引进了instanceof操作符。  </p>
 <p>person instanceof Object 这样来检测person是不是Object。  </p>
 <p>person instanceof Array 这样来检测person是不是Array。  </p>
@@ -483,7 +483,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

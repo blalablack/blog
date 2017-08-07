@@ -90,19 +90,20 @@
 
 
 
-<meta name="description" content="这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。">
+<meta name="description" content="一些css知识和使用技巧的总结">
 <meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="label">
-<meta property="og:url" content="https://github.com/blalablack/blog/2017/07/24/label/index.html">
+<meta property="og:title" content="css知识点">
+<meta property="og:url" content="https://github.com/blalablack/blog/2017/08/03/css知识点/index.html">
 <meta property="og:site_name" content="Lip的个人博客">
-<meta property="og:description" content="这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。">
-<meta property="og:image" content="https://github.com/blog/myimages/label/p1.png">
-<meta property="og:updated_time" content="2017-07-24T09:49:44.695Z">
+<meta property="og:description" content="一些css知识和使用技巧的总结">
+<meta property="og:image" content="https://github.com/blog/myimages/cssPointer/p1.png">
+<meta property="og:image" content="https://github.com/blog/myimages/cssPointer/p2.png">
+<meta property="og:updated_time" content="2017-08-07T05:18:31.709Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="label">
-<meta name="twitter:description" content="这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。">
-<meta name="twitter:image" content="https://github.com/blog/myimages/label/p1.png">
+<meta name="twitter:title" content="css知识点">
+<meta name="twitter:description" content="一些css知识和使用技巧的总结">
+<meta name="twitter:image" content="https://github.com/blog/myimages/cssPointer/p1.png">
 
 
 
@@ -130,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/blalablack/blog/2017/07/24/label/"/>
+  <link rel="canonical" href="https://github.com/blalablack/blog/2017/08/03/css知识点/"/>
 
 
 
 
 
-  <title>label | Lip的个人博客</title>
+  <title>css知识点 | Lip的个人博客</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -265,7 +266,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/blog/2017/07/24/label/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/blog/2017/08/03/css知识点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lip">
@@ -286,7 +287,7 @@
             
             
               
-                label
+                css知识点
               
             
           </h1>
@@ -301,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T16:13:26+08:00">
-                2017-07-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T10:39:39+08:00">
+                2017-08-03
               </time>
             
 
@@ -336,11 +337,12 @@
       
 
       
-        <p>这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。<a id="more"></a></p>
-<h2 id="一、label触发两次的bug"><a href="#一、label触发两次的bug" class="headerlink" title="一、label触发两次的bug"></a>一、label触发两次的bug</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"checkbox"</span> id=<span class="string">"d2"</span> name=<span class="string">"age"</span>&gt;&lt;<span class="keyword">label</span> <span class="keyword">for</span>=<span class="string">"d2"</span>&gt;年龄&lt;/<span class="keyword">label</span>&gt;</div><div class="line">&lt;<span class="keyword">label</span>&gt;&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"checkbox"</span> name=<span class="string">"age"</span>&gt;年龄&lt;/<span class="keyword">label</span>&gt;</div></pre></td></tr></table></figure>
-<p>上面两种方式都可以实现label的效果，第二种省略了id和for也是可以的，简化了代码。对于事件绑定来说，你只要两种方式都绑定在input上就没有什么问题。但是如果你需要绑定在lable上，对于<code>&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;age&quot;&gt;年龄&lt;/label&gt;</code>这种来说就会触发两次。<br>解释：label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果您在 label 元素内点击文本，就会触发此控件。<strong>当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。</strong>也就是，当label执行click事件时，那么它会传递给input再执行一次同一click事件，而且事件源对象都是label。</p>
-<h2 id="二、一个不错的样式"><a href="#二、一个不错的样式" class="headerlink" title="二、一个不错的样式"></a>二、一个不错的样式</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">label</span>&#123;</div><div class="line">	<span class="attribute">cursor</span>: pointer;</div><div class="line">	<span class="attribute">display</span>: inline-block;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">label</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#fff</span>;</div><div class="line">   	<span class="attribute">border</span>: <span class="number">1px</span> solid <span class="built_in">rgba</span>(0,0,0,0.15);</div><div class="line">   	<span class="attribute">border-radius</span>: <span class="number">100%</span>;</div><div class="line">   	<span class="attribute">display</span>: inline-block;</div><div class="line">   	<span class="attribute">height</span>: <span class="number">16px</span>;</div><div class="line">   	<span class="attribute">margin-right</span>: <span class="number">10px</span>;</div><div class="line">   	<span class="attribute">margin-top</span>: -<span class="number">1px</span>;</div><div class="line">   	<span class="attribute">vertical-align</span>: middle;</div><div class="line">   	<span class="attribute">width</span>: <span class="number">16px</span>;</div><div class="line">   	<span class="attribute">line-height</span>: <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">label</span> <span class="selector-tag">input</span>&#123;</div><div class="line">	<span class="attribute">display</span>: none;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">label</span> <span class="selector-tag">input</span><span class="selector-pseudo">:checked</span> +<span class="selector-tag">span</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#cc80dd</span>;</div><div class="line">   	<span class="attribute">border-radius</span>: <span class="number">100%</span>;</div><div class="line">   	<span class="attribute">content</span>: <span class="string">""</span>;</div><div class="line">   	<span class="attribute">display</span>: inline-block;</div><div class="line">   	<span class="attribute">height</span>: <span class="number">12px</span>;</div><div class="line">   	<span class="attribute">margin</span>: <span class="number">2px</span>;</div><div class="line">   	<span class="attribute">width</span>: <span class="number">12px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>效果：<img src="/blog/myimages/label/p1.png" alt="展示效果"></p>
+        <p>一些css知识和使用技巧的总结<a id="more"></a></p>
+<h3 id="一、-nth-of-type-n-和-nth-child-n"><a href="#一、-nth-of-type-n-和-nth-child-n" class="headerlink" title="一、:nth-of-type(n)和:nth-child(n)"></a>一、:nth-of-type(n)和:nth-child(n)</h3><p>p:nth-of-type(2)：选择属于其父元素第二个 </p><p> 元素的每个 </p><p> 元素。<br>p:nth-child(2)：选择属于其父元素的唯一子元素的每个 </p><p> 元素。<br>字面意思就是:nth-of-type(n)是分类的，而:nth-child(n)不分类（只要是子元素都算）。<br>例如：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="params">&lt;div id='d1'&gt;</span></div><div class="line">	<span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">	<span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line">	<span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">	<span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line"><span class="params">&lt;/div&gt;</span></div><div class="line"><span class="meta">#d1 div:nth-of-type(1)&#123;</span></div><div class="line"><span class="symbol">	background:</span> <span class="meta">#ddd;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/blog/myimages/cssPointer/p1.png" alt="效果"><br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="params">&lt;div id='d1'&gt;</span></div><div class="line">	<span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">	<span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line">	<span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">	<span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line"><span class="params">&lt;/div&gt;</span></div><div class="line"><span class="meta">#d1 div:nth-child(1)&#123;</span></div><div class="line"><span class="symbol">	background:</span> <span class="meta">#ddd;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/blog/myimages/cssPointer/p2.png" alt="效果"><br>就是带着type的都会分类，不带的不会分类，子元素都算上。感觉:nth-of-type(n)比较符合使用习惯。<br>注：这些都不能和类选择器，id选择器结合使用。</p>
+<h3 id="二、hover的一个妙用"><a href="#二、hover的一个妙用" class="headerlink" title="二、hover的一个妙用"></a>二、hover的一个妙用</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">	&lt;<span class="built_in">li</span>&gt;第一个<span class="built_in">li</span>&lt;/<span class="built_in">li</span>&gt;</div><div class="line">	&lt;<span class="built_in">li</span> class=<span class="string">"second"</span>&gt;第二个<span class="built_in">li</span>&lt;/<span class="built_in">li</span>&gt;</div><div class="line">	&lt;<span class="built_in">li</span>&gt;第三个<span class="built_in">li</span>&lt;/<span class="built_in">li</span>&gt;</div><div class="line">	&lt;<span class="built_in">li</span>&gt;第四个<span class="built_in">li</span>&lt;/<span class="built_in">li</span>&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">ul:hover .<span class="built_in">second</span>&#123;</div><div class="line">	<span class="built_in">background</span>:#ddd;</div><div class="line">	<span class="built_in">color</span>:#cc80dd;</div><div class="line">	padding-left:200px;</div><div class="line">	margin-top: 100px;</div><div class="line">	<span class="built_in">height</span>:100px;</div><div class="line">&#125;</div><div class="line"><span class="built_in">li</span>&#123;</div><div class="line">	transition:all 1s;</div><div class="line">	<span class="built_in">height</span>:20px;</div><div class="line">	<span class="comment">/*其余的都有默认值*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>意思是#d1的hover事件但是#d1的子元素样式改变(所有的样式改变都ok)。所有的浏览器都支持，之要用js写的功能，css就能搞定，是不是很厉害啊。<br>注：所有hover之后的样式，hover之前都要有，不然会闪回。</p>
 
       
     </div>
@@ -377,8 +379,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/08/02/创建对象/" rel="next" title="创建对象">
-                <i class="fa fa-chevron-left"></i> 创建对象
+              <a href="/blog/2017/08/07/继承/" rel="next" title="继承">
+                <i class="fa fa-chevron-left"></i> 继承
               </a>
             
           </div>
@@ -387,8 +389,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2017/07/16/探究this/" rel="prev" title="探究this">
-                探究this <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2017/08/02/创建对象/" rel="prev" title="创建对象">
+                创建对象 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -511,7 +513,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、label触发两次的bug"><span class="nav-number">1.</span> <span class="nav-text">一、label触发两次的bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、一个不错的样式"><span class="nav-number">2.</span> <span class="nav-text">二、一个不错的样式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-nth-of-type-n-和-nth-child-n"><span class="nav-number">1.</span> <span class="nav-text">一、:nth-of-type(n)和:nth-child(n)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、hover的一个妙用"><span class="nav-number">2.</span> <span class="nav-text">二、hover的一个妙用</span></a></li></ol></div>
             
 
           </div>

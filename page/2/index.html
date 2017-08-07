@@ -90,19 +90,15 @@
 
 
 
-<meta name="description" content="这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。">
-<meta name="keywords">
-<meta property="og:type" content="article">
-<meta property="og:title" content="label">
-<meta property="og:url" content="https://github.com/blalablack/blog/2017/07/24/label/index.html">
+<meta name="description" content="未知的命运，已知的抉择">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lip的个人博客">
+<meta property="og:url" content="https://github.com/blalablack/blog/page/2/index.html">
 <meta property="og:site_name" content="Lip的个人博客">
-<meta property="og:description" content="这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。">
-<meta property="og:image" content="https://github.com/blog/myimages/label/p1.png">
-<meta property="og:updated_time" content="2017-07-24T09:49:44.695Z">
+<meta property="og:description" content="未知的命运，已知的抉择">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="label">
-<meta name="twitter:description" content="这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。">
-<meta name="twitter:image" content="https://github.com/blog/myimages/label/p1.png">
+<meta name="twitter:title" content="Lip的个人博客">
+<meta name="twitter:description" content="未知的命运，已知的抉择">
 
 
 
@@ -130,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/blalablack/blog/2017/07/24/label/"/>
+  <link rel="canonical" href="https://github.com/blalablack/blog/page/2/"/>
 
 
 
 
 
-  <title>label | Lip的个人博客</title>
+  <title>Lip的个人博客</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -161,7 +157,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -254,9 +252,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -265,7 +263,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/blog/2017/07/24/label/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/blog/2017/05/26/pagination/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lip">
@@ -286,7 +284,10 @@
             
             
               
-                label
+                
+                <a class="post-title-link" href="/blog/2017/05/26/pagination/" itemprop="url">
+                  Pagination分页增加页面跳转功能
+                </a>
               
             
           </h1>
@@ -301,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T16:13:26+08:00">
-                2017-07-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-26T14:15:32+08:00">
+                2017-05-26
               </time>
             
 
@@ -336,33 +337,28 @@
       
 
       
-        <p>这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。<a id="more"></a></p>
-<h2 id="一、label触发两次的bug"><a href="#一、label触发两次的bug" class="headerlink" title="一、label触发两次的bug"></a>一、label触发两次的bug</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"checkbox"</span> id=<span class="string">"d2"</span> name=<span class="string">"age"</span>&gt;&lt;<span class="keyword">label</span> <span class="keyword">for</span>=<span class="string">"d2"</span>&gt;年龄&lt;/<span class="keyword">label</span>&gt;</div><div class="line">&lt;<span class="keyword">label</span>&gt;&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"checkbox"</span> name=<span class="string">"age"</span>&gt;年龄&lt;/<span class="keyword">label</span>&gt;</div></pre></td></tr></table></figure>
-<p>上面两种方式都可以实现label的效果，第二种省略了id和for也是可以的，简化了代码。对于事件绑定来说，你只要两种方式都绑定在input上就没有什么问题。但是如果你需要绑定在lable上，对于<code>&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;age&quot;&gt;年龄&lt;/label&gt;</code>这种来说就会触发两次。<br>解释：label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果您在 label 元素内点击文本，就会触发此控件。<strong>当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。</strong>也就是，当label执行click事件时，那么它会传递给input再执行一次同一click事件，而且事件源对象都是label。</p>
-<h2 id="二、一个不错的样式"><a href="#二、一个不错的样式" class="headerlink" title="二、一个不错的样式"></a>二、一个不错的样式</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">label</span>&#123;</div><div class="line">	<span class="attribute">cursor</span>: pointer;</div><div class="line">	<span class="attribute">display</span>: inline-block;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">label</span> <span class="selector-tag">span</span>&#123;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#fff</span>;</div><div class="line">   	<span class="attribute">border</span>: <span class="number">1px</span> solid <span class="built_in">rgba</span>(0,0,0,0.15);</div><div class="line">   	<span class="attribute">border-radius</span>: <span class="number">100%</span>;</div><div class="line">   	<span class="attribute">display</span>: inline-block;</div><div class="line">   	<span class="attribute">height</span>: <span class="number">16px</span>;</div><div class="line">   	<span class="attribute">margin-right</span>: <span class="number">10px</span>;</div><div class="line">   	<span class="attribute">margin-top</span>: -<span class="number">1px</span>;</div><div class="line">   	<span class="attribute">vertical-align</span>: middle;</div><div class="line">   	<span class="attribute">width</span>: <span class="number">16px</span>;</div><div class="line">   	<span class="attribute">line-height</span>: <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">label</span> <span class="selector-tag">input</span>&#123;</div><div class="line">	<span class="attribute">display</span>: none;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">label</span> <span class="selector-tag">input</span><span class="selector-pseudo">:checked</span> +<span class="selector-tag">span</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#cc80dd</span>;</div><div class="line">   	<span class="attribute">border-radius</span>: <span class="number">100%</span>;</div><div class="line">   	<span class="attribute">content</span>: <span class="string">""</span>;</div><div class="line">   	<span class="attribute">display</span>: inline-block;</div><div class="line">   	<span class="attribute">height</span>: <span class="number">12px</span>;</div><div class="line">   	<span class="attribute">margin</span>: <span class="number">2px</span>;</div><div class="line">   	<span class="attribute">width</span>: <span class="number">12px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>效果：<img src="/blog/myimages/label/p1.png" alt="展示效果"></p>
-
+        
+          <p>Pagination是JQuery一款十分经典的分页插件，我在之前的基础上做了一点很小的改动：1、增加了页码输入跳转的功能，可以自己决定是否出现此功能。2、增加一个点击事件函数，返回点击的页码，可以实现ajax分次请求
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/05/26/pagination/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
@@ -370,42 +366,273 @@
       
 
       
-        
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2017/08/02/创建对象/" rel="next" title="创建对象">
-                <i class="fa fa-chevron-left"></i> 创建对象
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2017/07/16/探究this/" rel="prev" title="探究this">
-                探究this <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+      
 
-    <div class="post-spread">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/blog/2017/04/28/jq的四种绑定方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lip的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/04/28/jq的四种绑定方式/" itemprop="url">
+                  JQ的四种绑定方式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T15:50:23+08:00">
+                2017-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="一、bind-unbind方法"><a href="#一、bind-unbind方法" class="headerlink" title="一、bind unbind方法"></a>一、bind unbind方法</h2><p>bind的特点就是会把监听器绑定到目标元素上，有几个事件就绑定几个，它和<code>$(selector).click(function)</code>是一样的。既然是绑定在目标元素上，也就是这个目标元素在绑定此事件的js执行完时，必须存在于页面上，此事件绑定才算成功。而之后页面动态添加的元素则不会绑定这个事件。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/04/28/jq的四种绑定方式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
-  </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/blog/2017/04/26/hexo-GitHub-Pages-Dropbox-搭建个人博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lip的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/04/26/hexo-GitHub-Pages-Dropbox-搭建个人博客/" itemprop="url">
+                  写在前面的话
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T23:22:44+08:00">
+                2017-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>从今天开始我的个人博客总算是初具模型了，虽然很简陋但也算是自己小窝了。对于建立自己个人博客，自己很久之前就是有这个想法的，但中间各种事(自己的拖延症的借口)，加上自己水平有限，就一拖再拖了。<br>临近毕业，正好赶上要作毕业设计，就突发奇想看看能不能做一个博客交差呢？即使不行，还可以督促自己完成构建个人博客，怎么算都是赚的。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/04/26/hexo-GitHub-Pages-Dropbox-搭建个人博客/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -413,10 +640,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -436,17 +659,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/blog/images/touxiang.jpg"
@@ -501,22 +715,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、label触发两次的bug"><span class="nav-number">1.</span> <span class="nav-text">一、label触发两次的bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、一个不错的样式"><span class="nav-number">2.</span> <span class="nav-text">二、一个不错的样式</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -623,10 +821,6 @@
   
 
   
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.1"></script>
-
-
 
   
 
