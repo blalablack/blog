@@ -19,6 +19,12 @@
 ]]></content>
       
         
+        <tags>
+            
+            <tag> 其他 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -33,6 +39,12 @@
 <h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>react浅比较只是进行第一层的比较，所以我们在写组件时尽量考虑state的扁平化，同时使用PureComponent优化，会很大的优化性能。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> React </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -41,6 +53,12 @@
       <url>/blog/2017/08/31/%E5%B1%9E%E6%80%A7%E9%81%8D%E5%8E%86/</url>
       <content type="html"></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -71,6 +89,12 @@
 <p>slice() 方法返回一个从开始到结束（不包括结束）选择的数组的一部分浅拷贝（引用类型共用）到一个新数组对象。原始数组不会被修改。接受两个参数，省略哪一个到哪一端极限（都省略返回完整新数组）。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -87,6 +111,12 @@
 <p>应用：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function">function <span class="title">showValue</span>(<span class="params"><span class="keyword">event</span></span>)</span>&#123;</div><div class="line">	<span class="comment">//获取事件对象</span></div><div class="line">	e=EventUtil.getEvent(<span class="keyword">event</span>);</div><div class="line">	<span class="comment">//阻止冒泡</span></div><div class="line">	EventUtil.stopPropagation(e);</div><div class="line">	<span class="comment">//获取事件源对象</span></div><div class="line">	<span class="keyword">var</span> eTarget=EventUtil.getTarget(e);</div><div class="line">	console.log(eTarget.<span class="keyword">value</span>)</div><div class="line">&#125;</div><div class="line">EventUtil.addHandler(div,<span class="string">"click"</span>,showValue)</div></pre></td></tr></table></figure></p>
 ]]></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -106,6 +136,12 @@
 <p>注：上面的函数参数都是可选的。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -129,6 +165,12 @@
 <h4 id="3、深拷贝"><a href="#3、深拷贝" class="headerlink" title="3、深拷贝"></a>3、深拷贝</h4><p>把包含引用类型值是递归调用浅拷贝。这要操作之后子类拥有所有父类的内容，子父相互独立可以放心使用。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function deepCopy(p,<span class="built_in">c</span>)&#123;</div><div class="line">	<span class="keyword">var</span> <span class="built_in">c</span>=<span class="built_in">c</span>||&#123;&#125;;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> p)&#123;</div><div class="line">		<span class="keyword">if</span>(typeof p[i]===<span class="string">"object"</span>)&#123;</div><div class="line">			<span class="built_in">c</span>[i]=(p[i].constructor===<span class="type">Array</span>)?[]:&#123;&#125;;<span class="comment">//确定是否数组</span></div><div class="line">			deepCopy(p[i],<span class="built_in">c</span>[i]);<span class="comment">//递归调用</span></div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="built_in">c</span>[i]=p[i];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">c</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person=&#123;</div><div class="line">	name:<span class="string">"lee"</span>,</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> parent=deepCopay(person);</div></pre></td></tr></table></figure></p>
 ]]></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -143,6 +185,12 @@
 <p>意思是#d1的hover事件但是#d1的子元素样式改变(所有的样式改变都ok)。所有的浏览器都支持，之要用js写的功能，css就能搞定，是不是很厉害啊。<br>注：所有hover之后的样式，hover之前都要有，不然会闪回。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> CSS </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -173,6 +221,12 @@
 <p>我想创建好多带有特殊方法的数组，又不能改变原生的Array构造函数这是就可以使用这个模式。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -186,6 +240,12 @@
 <p>效果：<img src="/blog/myimages/label/p1.png" alt="展示效果"></p>
 ]]></content>
       
+        <categories>
+            
+            <category> HTML </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -211,6 +271,12 @@
 <h3 id="四、new绑定"><a href="#四、new绑定" class="headerlink" title="四、new绑定"></a>四、new绑定</h3><p>//待议</p>
 <h2 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h2><h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3>]]></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -239,6 +305,12 @@
 <h3 id="4、代码"><a href="#4、代码" class="headerlink" title="4、代码"></a>4、代码</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">on</span> <span class="keyword">the</span> way</div></pre></td></tr></table></figure>
 ]]></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -255,6 +327,12 @@
 <p><code>throttle(haha,60,100)</code>意思是60ms内重复操作不执行，超过100ms必须执行一次。这个方法加入了一个最大时间判断，在进行优化程序的同时尽量解决用户体验。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -273,6 +351,12 @@
 <h3 id="2、void"><a href="#2、void" class="headerlink" title="2、void"></a>2、void</h3><p>void 运算符对任何值返回 undefined。该运算符通常用于避免输出不应该输出的值。例如<code>&lt;a href=&quot;javascript:void(back())&quot;&gt;</code>这里点击a即执行了back事件，有避免了页面跳转。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -294,6 +378,12 @@ console.log(d2.nextSibling);//文本
 </code></pre><p>不要怀疑上面的都是对象(不信typeof一下)，只是浏览器的控制台输出策略不同。<br>测试结果：用选择器选的只能输出文本，只有一个childNodes可以输出对象。这是chrome浏览器，但是火狐就比较厉害了无论用什么找到的都能输出对象。当然你也不可能在专门为了看属性在打开一个火狐浏览器（用火狐开发的当没看到）。下面就介绍chrome的输出对象的方法：<br>当当当，就是全部<strong>封装成Array</strong>的形式。 <code>console.log([d1.lastChild])</code>这样你就可以得到输出的dom对象了还可以得到Array的方法属性奥，似不似很厉害啊。<br><img src="/blog/myimages/consoleDom/p4.png" alt="打印的jqDom">  </p>
 ]]></content>
       
+        <categories>
+            
+            <category> 调试 </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -310,6 +400,12 @@ console.log(d2.nextSibling);//文本
 <p>放心js是顺序执行的，但是无论我怎么刷新页面结果都是一样的，这就尴尬了。等待之后有机会在探讨吧，有哪位大神指导一下是最好的啦。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> 调试 </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -343,6 +439,12 @@ console.log(d2.nextSibling);//文本
 <h3 id="3、关于回调函数。"><a href="#3、关于回调函数。" class="headerlink" title="3、关于回调函数。"></a>3、关于回调函数。</h3><p>回调函数的意思就是在函数执行完毕调用的函数，而在这里使用参数的形式来设置回调函数，灵活性搞，可以任意设置回调函数。<br>pagination的回调函数的作用是显示对应分页的列表项内容,回调函数在用户每次点击分页链接的时候执行。<br>注意点：这里pagination的回调函数在分页创建时就调用了一次。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> Jquery </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -355,6 +457,12 @@ console.log(d2.nextSibling);//文本
 <h2 id="四、on-off方法"><a href="#四、on-off方法" class="headerlink" title="四、on off方法"></a>四、on off方法</h2><p>自 jQuery 版本 1.7 起，on() 方法是 bind()、live() 和 delegate()方法的代替品，用它可以代替bind,live,delegate方法，简化了书写。<code>$(selector).on(event,function)</code>代替bind方法。<br>官方推荐尽量使用on方法，其他这几个方法都是内部调用on方法的，直接使用on方法可以提高效率，所以我们可以用on方法代替其他几个方法。<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(parentSelector).on(event,selector,<span class="keyword">data</span>,<span class="function"><span class="keyword">function</span></span>,map)</div></pre></td></tr></table></figure></p>
 ]]></content>
       
+        <categories>
+            
+            <category> Jquery </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -364,6 +472,12 @@ console.log(d2.nextSibling);//文本
       <content type="html"><![CDATA[<p>从今天开始我的个人博客总算是初具模型了，虽然很简陋但也算是自己小窝了。对于建立自己个人博客，自己很久之前就是有这个想法的，但中间各种事(自己的拖延症的借口)，加上自己水平有限，就一拖再拖了。<br>临近毕业，正好赶上要作毕业设计，就突发奇想看看能不能做一个博客交差呢？即使不行，还可以督促自己完成构建个人博客，怎么算都是赚的。<a id="more"></a>于是就有了这个博客的雏形，还有感谢这个主题的创建者还有网上超牛的博主，他们的无私分享让我受益无穷(生活在当今世界真是幸运）。<br>当然这只是个初级版本，今后还会努力建设自己的小窝的。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> 其他 </category>
+            
+        </categories>
+        
         
     </entry>
     

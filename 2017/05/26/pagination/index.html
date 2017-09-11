@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://github.com/blog/myimages/pagination/p1.png">
 <meta property="og:image" content="https://github.com/blog/myimages/pagination/p2.png">
 <meta property="og:image" content="https://github.com/blog/myimages/pagination/p3.png">
-<meta property="og:updated_time" content="2017-08-14T07:05:56.838Z">
+<meta property="og:updated_time" content="2017-09-07T05:28:11.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pagination分页增加页面跳转功能">
 <meta name="twitter:description" content="Pagination是JQuery一款十分经典的分页插件，我在之前的基础上做了一点很小的改动：1、增加了页码输入跳转的功能，可以自己决定是否出现此功能。2、增加一个点击事件函数，返回点击的页码，可以实现ajax分次请求">
@@ -200,31 +200,31 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
+          <a href="/blog/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            全部
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives" rel="section">
+          <a href="/blog/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-file-text"></i> <br />
             
-            归档
+            简介
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-picture">
-          <a href="https://blalablack.github.io/picture/index.html" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-picture-o"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            画廊
+            分类
           </a>
         </li>
       
@@ -347,6 +347,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Jquery/" itemprop="url" rel="index">
+                    <span itemprop="name">Jquery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -516,7 +538,7 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/blog/archives">
+              <a href="/blog/">
                 <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -524,7 +546,25 @@
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
