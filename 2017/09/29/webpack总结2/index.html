@@ -97,12 +97,12 @@
 <meta property="og:url" content="https://github.com/blalablack/blog/2017/09/29/webpack总结2/index.html">
 <meta property="og:site_name" content="Lip's Blog">
 <meta property="og:description" content="这篇主要是对webpack生产环境优化的总结，主要包括配置生产环境，代码压缩，代码分离，缓存这几部分内容。">
-<meta property="og:image" content="https://github.com/blog/myimages/webpack/runtime.png">
-<meta property="og:updated_time" content="2017-09-30T07:02:34.857Z">
+<meta property="og:image" content="https://github.com/myimages/2017-09-29-webpack总结2/runtime.png">
+<meta property="og:updated_time" content="2017-10-09T07:44:30.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack总结2">
 <meta name="twitter:description" content="这篇主要是对webpack生产环境优化的总结，主要包括配置生产环境，代码压缩，代码分离，缓存这几部分内容。">
-<meta name="twitter:image" content="https://github.com/blog/myimages/webpack/runtime.png">
+<meta name="twitter:image" content="https://github.com/myimages/2017-09-29-webpack总结2/runtime.png">
 
 
 
@@ -414,7 +414,7 @@
 <p>使用这个插件有一问题：css的默认路径是和output相同，如果把分离出来的css文件放在文件夹中，那么就会找不到img文件。<br>这里可以给他设置publicPath可以解决。但是这个publicPath会替换output中的publicPath，不知道之后会有什么问题。</p>
 </blockquote>
 <h3 id="三、缓存"><a href="#三、缓存" class="headerlink" title="三、缓存"></a>三、缓存</h3><h4 id="CommonsChunkPlugin"><a href="#CommonsChunkPlugin" class="headerlink" title="CommonsChunkPlugin"></a>CommonsChunkPlugin</h4><h5 id="提取模板"><a href="#提取模板" class="headerlink" title="提取模板"></a>提取模板</h5><p><code>CommonsChunkPlugin</code>能够在每次修改后的构建结果中，将 webpack 的样板(boilerplate)和 manifest 提取出来。通过指定 entry 配置中未用到的名称，此插件会自动将我们需要的内容提取到单独的包中，一定要单独的包，因为任何的变动都会导致它的变化。<br>在plugins中添加插件实例：<br><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">new</span> <span class="selector-tag">webpack</span><span class="selector-class">.optimize</span><span class="selector-class">.CommonsChunkPlugin</span>(&#123;</div><div class="line">  <span class="attribute">name</span>: <span class="string">'runtime'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>打包结果：<br><img src="/blog/myimages/webpack/runtime.png" alt=""><br>这里打包生成的runtime就是webpack 的样板(boilerplate)和 manifest，这样就可以利用缓存了。</p>
+<p>打包结果：<br><img src="/myimages/2017-09-29-webpack总结2/runtime.png" alt=""><br>这里打包生成的runtime就是webpack 的样板(boilerplate)和 manifest，这样就可以利用缓存了。</p>
 <blockquote>
 <p>关于manifest，大致可以理解为webpack用来管理实现模块的文件，每次任何文件改变打包后都会改变那么缓存就无从说起了，所以才有了用<code>CommonsChunkPlugin</code>提取manifest。<br><a href="https://doc.webpack-china.org/concepts/manifest" target="_blank" rel="external">manifest说明</a></p>
 </blockquote>

@@ -90,21 +90,21 @@
 
 
 
-<meta name="description" content="在操作dom时，可能会需要在控制台查看Dom对象的属性方法（比差文档快多了），本篇就介绍了这样的方法">
+<meta name="description" content="在操作dom时，可能会需要在控制台查看Dom对象的属性方法（比查文档快多了），本篇就介绍了这样的方法">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="console打印dom对象">
 <meta property="og:url" content="https://github.com/blalablack/blog/2017/07/07/console打印dom对象/index.html">
 <meta property="og:site_name" content="Lip's Blog">
-<meta property="og:description" content="在操作dom时，可能会需要在控制台查看Dom对象的属性方法（比差文档快多了），本篇就介绍了这样的方法">
-<meta property="og:image" content="https://github.com/blog/myimages/consoleDom/p1.png">
-<meta property="og:image" content="https://github.com/blog/myimages/consoleDom/p2.png">
-<meta property="og:image" content="https://github.com/blog/myimages/consoleDom/p4.png">
-<meta property="og:updated_time" content="2017-09-07T05:32:27.504Z">
+<meta property="og:description" content="在操作dom时，可能会需要在控制台查看Dom对象的属性方法（比查文档快多了），本篇就介绍了这样的方法">
+<meta property="og:image" content="https://github.com/myimages/2017-07-07-console打印dom对象/p1.png">
+<meta property="og:image" content="https://github.com/myimages/2017-07-07-console打印dom对象/p2.png">
+<meta property="og:image" content="https://github.com/myimages/2017-07-07-console打印dom对象/p4.png">
+<meta property="og:updated_time" content="2017-10-09T07:56:16.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="console打印dom对象">
-<meta name="twitter:description" content="在操作dom时，可能会需要在控制台查看Dom对象的属性方法（比差文档快多了），本篇就介绍了这样的方法">
-<meta name="twitter:image" content="https://github.com/blog/myimages/consoleDom/p1.png">
+<meta name="twitter:description" content="在操作dom时，可能会需要在控制台查看Dom对象的属性方法（比查文档快多了），本篇就介绍了这样的方法">
+<meta name="twitter:image" content="https://github.com/myimages/2017-07-07-console打印dom对象/p1.png">
 
 
 
@@ -394,11 +394,10 @@
       
 
       
-        <p>在操作dom时，可能会需要在控制台查看Dom对象的属性方法（比差文档快多了），本篇就介绍了这样的方法<a id="more"></a></p>
-<h2 id="一、原生和jqDom对象console对比"><a href="#一、原生和jqDom对象console对比" class="headerlink" title="一、原生和jqDom对象console对比"></a>一、原生和jqDom对象console对比</h2><p>我们想要获得原生Dom的属性方法，像这样：<br><img src="/blog/myimages/consoleDom/p1.png" alt="打印的Dom详细"><br>这里可以看到一切。我们知道jquery是很好在控制台输出的，只要有$(“”)选择器查找到元素console一下就会得到：<br><img src="/blog/myimages/consoleDom/p2.png" alt="打印的jqDom"><br>0的位置是htmlDom,但是下面的方法就是jq的方法了。很简单可以自己试一下。<br>但是正题来了怎样才能在控制台console原生Dom对象呢？</p>
-<h2 id="二、在控制台输出原生对象的方法"><a href="#二、在控制台输出原生对象的方法" class="headerlink" title="二、在控制台输出原生对象的方法"></a>二、在控制台输出原生对象的方法</h2><pre><code>&lt;div id=&quot;d1&quot;&gt;&lt;div id=&quot;d2&quot;&gt;&lt;/div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
-
-var d1=document.getElementById(&quot;d1&quot;);
+        <p>在操作dom时，可能会需要在控制台查看Dom对象的属性方法（比查文档快多了），本篇就介绍了这样的方法<a id="more"></a></p>
+<h2 id="一、原生和jqDom对象console对比"><a href="#一、原生和jqDom对象console对比" class="headerlink" title="一、原生和jqDom对象console对比"></a>一、原生和jqDom对象console对比</h2><p>我们想要获得原生Dom的属性方法，像这样：<br><img src="/myimages/2017-07-07-console打印dom对象/p1.png" alt="打印的Dom详细"><br>我们知道jquery对象是很好在控制台输出的，只要有$(“”)选择器查找到元素console一下就会得到：<br><img src="/myimages/2017-07-07-console打印dom对象/p2.png" alt="打印的jqDom"><br>0的位置是htmlDom，还可以看到jq的方法。很简单可以自己试一下。<br>但是正题来了怎样才能在控制台console原生Dom对象呢？</p>
+<h2 id="二、在控制台输出原生对象的方法"><a href="#二、在控制台输出原生对象的方法" class="headerlink" title="二、在控制台输出原生对象的方法"></a>二、在控制台输出原生对象的方法</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;div id=<span class="string">"d1"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<pre><code>var d1=document.getElementById(&quot;d1&quot;);
 var d2=document.getElementById(&quot;d2&quot;);
 
 console.log(d1.childNodes); //Dom 对象
@@ -406,7 +405,12 @@ console.log(d1.firstChild); //文本
 console.log(d1.lastChild);  //文本
 console.log(d2.parentNode); //文本
 console.log(d2.nextSibling);//文本
-</code></pre><p>不要怀疑上面的都是对象(不信typeof一下)，只是浏览器的控制台输出策略不同。<br>测试结果：用选择器选的只能输出文本，只有一个childNodes可以输出对象。这是chrome浏览器，但是火狐就比较厉害了无论用什么找到的都能输出对象。当然你也不可能在专门为了看属性在打开一个火狐浏览器（用火狐开发的当没看到）。下面就介绍chrome的输出对象的方法：<br>当当当，就是全部<strong>封装成Array</strong>的形式。 <code>console.log([d1.lastChild])</code>这样你就可以得到输出的dom对象了还可以得到Array的方法属性奥，似不似很厉害啊。<br><img src="/blog/myimages/consoleDom/p4.png" alt="打印的jqDom">  </p>
+</code></pre><p>上面的都是对象(不信typeof一下)，但是控制台显示结果不同（浏览器的控制台输出策略不同）。<br><strong>测试结果：</strong></p>
+<ul>
+<li>chrome：用选择器选的只能输出文本，只有一个childNodes可以输出对象。</li>
+<li>firefox：都可以输出对象。当然你也不可能在专门为了看属性在打开一个火狐浏览器（用火狐开发的当没看到）。</li>
+</ul>
+<p><strong>chrome控制台显示对象：</strong><br>当当当，就是全部<strong>封装成Array</strong>的形式。 <code>console.log([d1.lastChild])</code>这样你就可以得到输出的dom对象了还可以得到Array的方法属性奥，似不似很厉害啊。<br><img src="/myimages/2017-07-07-console打印dom对象/p4.png" alt="打印的jqDom">  </p>
 
       
     </div>
