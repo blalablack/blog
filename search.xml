@@ -49,7 +49,7 @@
 <li>英语水平有待提高。尤其看长篇英文时会有抗拒心理，以后要多加提高。</li>
 <li>官方文档还是很重的。虽然博客会更简单一些，但由于时间、环境等原因会出现很多问题。以后学习路线可以通过大神博客大致了解下整体的概念和使用的重点，之后还是要慢慢啃文档的。</li>
 </ul>
-<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>还有一部分按需加载等没有介绍到，今后用到会再做补充。<br>附上自己webpack+react的配置。</p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>还有一部分按需加载等没有介绍到，今后用到会再做补充。<br>附上自己webpack+react的配置。<a href="https://github.com/blalablack/webpack-react-demo">传送门</a></p>
 ]]></content>
       
         <categories>
