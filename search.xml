@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[webpack总结2]]></title>
-      <url>/blog/2017/09/29/webpack%E6%80%BB%E7%BB%932/</url>
+      <url>/2017/09/29/webpack%E6%80%BB%E7%BB%932/</url>
       <content type="html"><![CDATA[<p>这篇主要是对webpack生产环境优化的总结，主要包括配置生产环境，代码压缩，代码分离，缓存这几部分内容。<a id="more"></a>至于按需加载，测试代码等会在后续添加。</p>
 <h3 id="一、摘要"><a href="#一、摘要" class="headerlink" title="一、摘要"></a>一、摘要</h3><p>此部分主要是概括了一部分生成环境优化的过程，其实核心还是根据浏览器的特性进行优化。</p>
 <ul>
@@ -63,7 +63,7 @@
     
     <entry>
       <title><![CDATA[webpack总结1]]></title>
-      <url>/blog/2017/09/26/webpack%E6%80%BB%E7%BB%931/</url>
+      <url>/2017/09/26/webpack%E6%80%BB%E7%BB%931/</url>
       <content type="html"><![CDATA[<p>前前后后学习webpack快两个周了，算是入门了，此篇文章主要是对学习内容的总结，同时记录下心得体会<a id="more"></a></p>
 <h3 id="一、webpack的主要工作"><a href="#一、webpack的主要工作" class="headerlink" title="一、webpack的主要工作"></a>一、webpack的主要工作</h3><p>1、把你整个项目当做一个整体，通过给定一个入或者多个入口，webpack将从这个文件开始找到你所有依赖，使用loaders，plugins处理他们（解析，编译，优化），最后打包成一个或者多个浏览器可以识别的JavaScript文件。<br>2、同时webpack也提供一些简单的开发工具（devtool）来简化我们的开发过程。</p>
 <h3 id="二、webpack基本介绍"><a href="#二、webpack基本介绍" class="headerlink" title="二、webpack基本介绍"></a>二、webpack基本介绍</h3><p><strong>注：所有代码都是在window环境下，webpack版本3.6.0，node版本6.11.3，构建react项目。</strong></p>
@@ -216,7 +216,7 @@
     
     <entry>
       <title><![CDATA[Git命令记录]]></title>
-      <url>/blog/2017/09/07/Git%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/</url>
+      <url>/2017/09/07/Git%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/</url>
       <content type="html"><![CDATA[<p>主要是在学习Git过程中对自己常用命令的记录。<a id="more"></a><br>此篇主要是自己常用命令的记录，详细教程请移步<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" title="网站链接" target="_blank" rel="external">廖老师网站</a>。</p>
 <h3 id="1、创建版本库"><a href="#1、创建版本库" class="headerlink" title="1、创建版本库"></a>1、创建版本库</h3><h4 id="git-init"><a href="#git-init" class="headerlink" title="$ git init"></a>$ git init</h4><p>把目录文件变成Git仓库，目录下的.git文件用来跟踪管理版本库，不要修改。</p>
 <h3 id="2、工作区和缓存区"><a href="#2、工作区和缓存区" class="headerlink" title="2、工作区和缓存区"></a>2、工作区和缓存区</h3><h4 id="git-add"><a href="#git-add" class="headerlink" title="$ git add"></a>$ git add</h4><p>把工作区的文件添加到缓存区，<code>$ git add file1 file2</code>把file1,2添加到缓存区，<code>$ git add .</code>添加全部</p>
@@ -241,7 +241,7 @@
     
     <entry>
       <title><![CDATA[PureComponent]]></title>
-      <url>/blog/2017/09/04/PureComponent/</url>
+      <url>/2017/09/04/PureComponent/</url>
       <content type="html"><![CDATA[<p>这篇主要介绍了react浅比较的方法，对于自己这样react初学者理解PureComponent原理还是有帮助的。<a id="more"></a><br>先看react关于浅比较的源码：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">is</span><span class="params">(x, y)</span> </span>&#123;</div><div class="line">	  <span class="comment">// SameValue algorithm</span></div><div class="line">	  <span class="keyword">if</span> (x === y) &#123;</div><div class="line">	    <span class="comment">// Steps 1-5, 7-10</span></div><div class="line">	    <span class="comment">// Steps 6.b-6.e: +0 != -0</span></div><div class="line">	    <span class="comment">// Added the nonzero y check to make Flow happy, but it is redundant</span></div><div class="line">	    <span class="keyword">return</span> x !== <span class="number">0</span> || y !== <span class="number">0</span> || <span class="number">1</span> / x === <span class="number">1</span> / y;</div><div class="line">	  &#125; <span class="keyword">else</span> &#123;</div><div class="line">	    <span class="comment">// Step 6.a: NaN == NaN</span></div><div class="line">	    <span class="keyword">return</span> x !== x &amp;&amp; y !== y;</div><div class="line">	  &#125;</div><div class="line">	&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">shallowEqual</span><span class="params">(objA, objB)</span> </span>&#123;</div><div class="line">	  <span class="keyword">if</span> (<span class="keyword">is</span>(objA, objB)) &#123;</div><div class="line">		<span class="comment">//指向同一个对象时</span></div><div class="line">	    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">	  &#125;</div><div class="line">	</div><div class="line">	  <span class="keyword">if</span> (<span class="keyword">typeof</span> objA !== <span class="string">'object'</span> || objA === <span class="literal">null</span> || <span class="keyword">typeof</span> objB !== <span class="string">'object'</span> || objB === <span class="literal">null</span>) &#123;</div><div class="line">	 	<span class="comment">//null和不是对象时</span></div><div class="line">	    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	  &#125;</div><div class="line">	  <span class="comment">//两个不动对象的比较</span></div><div class="line">	  <span class="keyword">var</span> keysA = Object.keys(objA);</div><div class="line">	  <span class="keyword">var</span> keysB = Object.keys(objB);</div><div class="line">	</div><div class="line">	  <span class="keyword">if</span> (keysA.length !== keysB.length) &#123;</div><div class="line">	    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	  &#125;</div><div class="line">	</div><div class="line">	  <span class="comment">// Test for A's keys different from B.</span></div><div class="line">	  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; keysA.length; i++) &#123;</div><div class="line">	    <span class="keyword">if</span> (!hasOwnProperty.call(objB, keysA[i]) || !<span class="keyword">is</span>(objA[keysA[i]], objB[keysA[i]])) &#123;</div><div class="line">				<span class="comment">//这里只要是多层嵌套对象都会进来</span></div><div class="line">	      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	    &#125;</div><div class="line">	  &#125;</div><div class="line">	  <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h3><h4 id="1、使用PureComponent，改变state但是却不render。"><a href="#1、使用PureComponent，改变state但是却不render。" class="headerlink" title="1、使用PureComponent，改变state但是却不render。"></a>1、使用PureComponent，改变state但是却不render。</h4><p>例如：<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//<span class="keyword">state</span>=&#123;item:[<span class="string">"item"</span>]&#125;</div><div class="line">let items=this.<span class="keyword">state</span>.item;</div><div class="line">items.push(<span class="string">"new-item"</span>)</div><div class="line">this.<span class="built_in">set</span>State(</div><div class="line">	item:items</div><div class="line">)</div></pre></td></tr></table></figure></p>
 <p>这里旧的state和新的state引用的同一个对象，浅比较总是成功（看上面源码），所以组件不会更新。<br><strong>解决方法：</strong><br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//<span class="keyword">state</span>=&#123;item:[<span class="string">"item"</span>]&#125;</div><div class="line">this.<span class="built_in">set</span>State(</div><div class="line">	item:[<span class="string">"new-item"</span>,...items]</div><div class="line">)</div></pre></td></tr></table></figure></p>
@@ -262,7 +262,7 @@
     
     <entry>
       <title><![CDATA[属性遍历]]></title>
-      <url>/blog/2017/08/31/%E5%B1%9E%E6%80%A7%E9%81%8D%E5%8E%86/</url>
+      <url>/2017/08/31/%E5%B1%9E%E6%80%A7%E9%81%8D%E5%8E%86/</url>
       <content type="html"></content>
       
         <categories>
@@ -276,7 +276,7 @@
     
     <entry>
       <title><![CDATA[Json&Object]]></title>
-      <url>/blog/2017/08/31/Json-Object/</url>
+      <url>/2017/08/31/Json-Object/</url>
       <content type="html"></content>
       
         
@@ -284,7 +284,7 @@
     
     <entry>
       <title><![CDATA[NodeList和slice]]></title>
-      <url>/blog/2017/08/31/NodeList%E5%92%8Cslice/</url>
+      <url>/2017/08/31/NodeList%E5%92%8Cslice/</url>
       <content type="html"><![CDATA[<p>主要介绍了NodeList，以及扩展原型的方法<a id="more"></a></p>
 <h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><p>NodeList是一个类数组对象,由Node.childNodes和document.qerySelectorAll返回。</p>
 <h3 id="二、属性方法"><a href="#二、属性方法" class="headerlink" title="二、属性方法"></a>二、属性方法</h3><p>根据MDN文档，NodeList有length属性和item方法（返回NodeList对象中指定索引的节点,如果索引越界,则返回null.等价的写法是nodeList[idx], 不过这种情况下越界访问将返回undefined.）。</p>
@@ -312,7 +312,7 @@
     
     <entry>
       <title><![CDATA[事件]]></title>
-      <url>/blog/2017/08/29/%E4%BA%8B%E4%BB%B6/</url>
+      <url>/2017/08/29/%E4%BA%8B%E4%BB%B6/</url>
       <content type="html"><![CDATA[<p>主要介绍了原生事件的概念和兼容方法。<a id="more"></a></p>
 <h3 id="二、事件处理程序"><a href="#二、事件处理程序" class="headerlink" title="二、事件处理程序"></a>二、事件处理程序</h3><p>1、传统方式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> btn=<span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</div><div class="line">btn.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	event<span class="comment">//事件对象</span></div><div class="line">	<span class="keyword">this</span><span class="comment">//btn,引用当前元素</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//移除</span></div><div class="line">btn.onclick=<span class="literal">null</span>;</div></pre></td></tr></table></figure></p>
 <p>特点：只能绑定一个，后边的会覆盖前面的<br>2、addEventListener<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> btn=<span class="built_in">document</span>.getElementById(<span class="string">"myBtn"</span>);</div><div class="line">btn.addEventListener(<span class="string">"click"</span>,handler,<span class="literal">false</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handler</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	event<span class="comment">//事件对象</span></div><div class="line">	<span class="keyword">this</span><span class="comment">//btn,引用当前元素</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//移除</span></div><div class="line">btn.removeEventListener(<span class="string">"click"</span>,handler,<span class="literal">false</span>);</div></pre></td></tr></table></figure></p>
@@ -334,7 +334,7 @@
     
     <entry>
       <title><![CDATA[迭代方法]]></title>
-      <url>/blog/2017/08/16/%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95/</url>
+      <url>/2017/08/16/%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95/</url>
       <content type="html"><![CDATA[<p>主要介绍了ES5的几个迭代方法（filter、map、forEach、every、some）<a id="more"></a></p>
 <h3 id="一、map方法"><a href="#一、map方法" class="headerlink" title="一、map方法"></a>一、map方法</h3><p>map方法返回一个数组，这个新数组的每一项依次对应原数组。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line"><span class="keyword">var</span> arrMap=arr.map(<span class="function"><span class="keyword">function</span><span class="params">(item,index,array)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> item*<span class="number">2</span>;</div><div class="line">&#125;)</div><div class="line">arrMap<span class="comment">//[2,4,6,8,10]</span></div></pre></td></tr></table></figure></p>
 <p>不会改变原数组，返回新数组</p>
@@ -359,7 +359,7 @@
     
     <entry>
       <title><![CDATA[继承]]></title>
-      <url>/blog/2017/08/07/%E7%BB%A7%E6%89%BF/</url>
+      <url>/2017/08/07/%E7%BB%A7%E6%89%BF/</url>
       <content type="html"><![CDATA[<p>对《JavaScript高级程序设计》关于继承的总结<a id="more"></a></p>
 <h3 id="一、单独使用原型链实现继承"><a href="#一、单独使用原型链实现继承" class="headerlink" title="一、单独使用原型链实现继承"></a>一、单独使用原型链实现继承</h3><h4 id="1、特点："><a href="#1、特点：" class="headerlink" title="1、特点："></a>1、特点：</h4><p>父类型的实例是子类型的原型，所有的子类型实例共享父实例的方法属性。<br>问题：子类型实例化时不能向父类传参，对于引用类型的值时，改一个全改。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name)</span></span>&#123;</div><div class="line">	this.name=name;</div><div class="line">	this.color=[<span class="string">"black"</span>,<span class="string">"white"</span>,<span class="string">"yellow"</span>];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span><span class="params">(age)</span></span>&#123;</div><div class="line">	this.age=age;</div><div class="line">&#125;</div><div class="line"><span class="keyword">Parent</span>.prototype=<span class="keyword">new</span> Person(<span class="string">"lee"</span>);</div><div class="line"><span class="keyword">Parent</span>.prototype.constructor=<span class="keyword">Parent</span>;</div><div class="line">parent1=<span class="keyword">new</span> <span class="keyword">Parent</span>(<span class="number">30</span>);</div><div class="line">parent2=<span class="keyword">new</span> <span class="keyword">Parent</span>(<span class="number">32</span>);</div></pre></td></tr></table></figure></p>
 <p>注：所有对象都是Object构造函数的实例，原型链的最顶端就是Object，原型对象也是对象。</p>
@@ -388,7 +388,7 @@
     
     <entry>
       <title><![CDATA[css知识点]]></title>
-      <url>/blog/2017/08/03/css%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
+      <url>/2017/08/03/css%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
       <content type="html"><![CDATA[<p>一些css知识和使用技巧的总结<a id="more"></a></p>
 <h3 id="一、-nth-of-type-n-和-nth-child-n"><a href="#一、-nth-of-type-n-和-nth-child-n" class="headerlink" title="一、:nth-of-type(n)和:nth-child(n)"></a>一、:nth-of-type(n)和:nth-child(n)</h3><p>p:nth-of-type(2)：选择属于其父元素第二个 </p><p> 元素的每个 </p><p> 元素。<br>p:nth-child(2)：选择属于其父元素的唯一子元素的每个 </p><p> 元素。<br>字面意思就是:nth-of-type(n)是分类的，而:nth-child(n)不分类（只要是子元素都算）。<br>例如：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="params">&lt;div id='d1'&gt;</span></div><div class="line">	<span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">	<span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line">	<span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">	<span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line"><span class="params">&lt;/div&gt;</span></div><div class="line"><span class="meta">#d1 div:nth-of-type(1)&#123;</span></div><div class="line"><span class="symbol">	background:</span> <span class="meta">#ddd;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><img src="/blog/myimages/cssPointer/p1.png" alt="效果"><br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="params">&lt;div id='d1'&gt;</span></div><div class="line">	<span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">	<span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line">	<span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">	<span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line"><span class="params">&lt;/div&gt;</span></div><div class="line"><span class="meta">#d1 div:nth-child(1)&#123;</span></div><div class="line"><span class="symbol">	background:</span> <span class="meta">#ddd;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -408,7 +408,7 @@
     
     <entry>
       <title><![CDATA[创建对象]]></title>
-      <url>/blog/2017/08/02/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/</url>
+      <url>/2017/08/02/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/</url>
       <content type="html"><![CDATA[<p>对《JavaScript高级程序设计》关于创建对象方法的总结<a id="more"></a></p>
 <h3 id="一、工厂模式"><a href="#一、工厂模式" class="headerlink" title="一、工厂模式"></a>一、工厂模式</h3><p>概述：在js中工厂模式可以看做是一种函数，用来封装创建对象的细节，最后返回一个对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">funciton Person(name,age)&#123;</div><div class="line">	<span class="keyword">var</span> o=<span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">	o.name=name;</div><div class="line">	o.age=age;</div><div class="line">	o.intr=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name+<span class="string">":"</span>+<span class="keyword">this</span>.age);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> o;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="二、构造函数模式"><a href="#二、构造函数模式" class="headerlink" title="二、构造函数模式"></a>二、构造函数模式</h3><h4 id="1、理解构造函数"><a href="#1、理解构造函数" class="headerlink" title="1、理解构造函数"></a>1、理解构造函数</h4><p>构造函数也是函数的一种，只不过具有创建对象的作用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.name=name;</div><div class="line">	<span class="keyword">this</span>.age=age;</div><div class="line">	<span class="keyword">this</span>.say=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name+<span class="string">"is"</span>+<span class="keyword">this</span>.age)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person1=<span class="keyword">new</span> Person(<span class="string">"Lee"</span>,<span class="number">24</span>);</div></pre></td></tr></table></figure></p>
@@ -444,7 +444,7 @@
     
     <entry>
       <title><![CDATA[label]]></title>
-      <url>/blog/2017/07/24/label/</url>
+      <url>/2017/07/24/label/</url>
       <content type="html"><![CDATA[<p>这篇主要记录在label标签上绑定事件会触发两次的一个bug，还有记录看到一个不错的label的样式。<a id="more"></a></p>
 <h2 id="一、label触发两次的bug"><a href="#一、label触发两次的bug" class="headerlink" title="一、label触发两次的bug"></a>一、label触发两次的bug</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"checkbox"</span> id=<span class="string">"d2"</span> name=<span class="string">"age"</span>&gt;&lt;<span class="keyword">label</span> <span class="keyword">for</span>=<span class="string">"d2"</span>&gt;年龄&lt;/<span class="keyword">label</span>&gt;</div><div class="line">&lt;<span class="keyword">label</span>&gt;&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"checkbox"</span> name=<span class="string">"age"</span>&gt;年龄&lt;/<span class="keyword">label</span>&gt;</div></pre></td></tr></table></figure>
 <p>上面两种方式都可以实现label的效果，第二种省略了id和for也是可以的，简化了代码。对于事件绑定来说，你只要两种方式都绑定在input上就没有什么问题。但是如果你需要绑定在lable上，对于<code>&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;age&quot;&gt;年龄&lt;/label&gt;</code>这种来说就会触发两次。<br>解释：label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果您在 label 元素内点击文本，就会触发此控件。<strong>当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。</strong>也就是，当label执行click事件时，那么它会传递给input再执行一次同一click事件，而且事件源对象都是label。</p>
@@ -463,7 +463,7 @@
     
     <entry>
       <title><![CDATA[探究this]]></title>
-      <url>/blog/2017/07/16/%E6%8E%A2%E7%A9%B6this/</url>
+      <url>/2017/07/16/%E6%8E%A2%E7%A9%B6this/</url>
       <content type="html"><![CDATA[<p>此篇结合是我在看《你不知道的JavaScript》对this绑定的一些心得体会和记录。<a id="more"></a></p>
 <h2 id="this的绑定规则"><a href="#this的绑定规则" class="headerlink" title="this的绑定规则"></a>this的绑定规则</h2><h3 id="一、默认绑定"><a href="#一、默认绑定" class="headerlink" title="一、默认绑定"></a>一、默认绑定</h3><p>独立函数调用，函数直接使用不带任何修饰的函数引用进行调用.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">defaultFn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line">defaultFn();<span class="comment">//2</span></div></pre></td></tr></table></figure></p>
 <p>本例中（非严格模式）this指向全局对象。默认邦定在其他规则无法应用时的默认规则。</p>
@@ -494,7 +494,7 @@
     
     <entry>
       <title><![CDATA[web存储机制]]></title>
-      <url>/blog/2017/07/13/web%E5%AD%98%E5%82%A8%E6%9C%BA%E5%88%B6/</url>
+      <url>/2017/07/13/web%E5%AD%98%E5%82%A8%E6%9C%BA%E5%88%B6/</url>
       <content type="html"><![CDATA[<p>HTML5提供了两种客户端存储数据的新方法:<br>1、localStorage-没有时间限制的数据存储<br>2、sessionStorage-针对一个session（一个标签页）的数据存储。<br>这篇文章主要介绍这两个新方法和对比俩个方法的不同，和一些实际的应用<a id="more"></a></p>
 <h2 id="一、localStorage"><a href="#一、localStorage" class="headerlink" title="一、localStorage"></a>一、localStorage</h2><h3 id="1、说明"><a href="#1、说明" class="headerlink" title="1、说明"></a>1、说明</h3><p>localStorage即本地储存，可以长久保存整个网站的数据，保存的数据没有过期时间，直到手动清除。</p>
 <h3 id="2、特点"><a href="#2、特点" class="headerlink" title="2、特点"></a>2、特点</h3><p>（1）同源策略限制。在同一协议、同一主机名和同一端口下的所有页面都可以访问通过localStorage存储的数据。<br>（2）在本地浏览器储存，不会涉及到服务器。<br>（3）永久保存。数据没有过期时间，直到手动清除（浏览器清缓存也不行）。<br>（4）储存方式。采用key,value的方式，而且value的值必学是string类型（传入其他类型会转化为string类型）。<br>（5）不同浏览器不能相互访问。</p>
@@ -528,7 +528,7 @@
     
     <entry>
       <title><![CDATA[函数节流]]></title>
-      <url>/blog/2017/07/12/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/</url>
+      <url>/2017/07/12/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/</url>
       <content type="html"><![CDATA[<p>DOM操作比起非DOM操作需要更多的内存和cpu时间，连续事件内进行多次的DOM操作可能会导致浏览器挂起或崩溃。例如resize,mousemove,scroll,keydown,keyup（打字时）等事件。这时便可以使用函数节流来介绍DOM操作，此篇主要介绍了函数节流的思想和方法。<a id="more"></a></p>
 <h2 id="一、函数节流思想原理"><a href="#一、函数节流思想原理" class="headerlink" title="一、函数节流思想原理"></a>一、函数节流思想原理</h2><h3 id="1、思想"><a href="#1、思想" class="headerlink" title="1、思想"></a>1、思想</h3><p>函数节流的基本思想是，某些操作不能在没有间断的情况下连续重复执行。</p>
 <h3 id="2、原理"><a href="#2、原理" class="headerlink" title="2、原理"></a>2、原理</h3><p>第一次调用时创建一个一次性定时器，在指定延迟时间后执行代码。第二次调用时，清空这个定时器重新创建一个新的计时器。如果前一个计时器执行完毕，没有什么关系，但是如果前一个计时器尚未执行，那个就会用新的计时器代替，时间从零开始。</p>
@@ -550,7 +550,7 @@
     
     <entry>
       <title><![CDATA[一元运算符]]></title>
-      <url>/blog/2017/07/07/%E4%B8%80%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+      <url>/2017/07/07/%E4%B8%80%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
       <content type="html"><![CDATA[<p>最近看到一个+new Date()的语法方式，就顺便研究了一下一元运算符，此篇主要介绍了一元运算符。<a id="more"></a></p>
 <h2 id="一、-运算符"><a href="#一、-运算符" class="headerlink" title="一、+-运算符"></a>一、+-运算符</h2><h3 id="1、"><a href="#1、" class="headerlink" title="1、+"></a>1、+</h3><p>那就从+new Date()语法开始，其实这里并没有什么高级语法，只是+会把后面的内容变为number类型（对数字无效）。这里的<code>+new Date()=Number(new Date())</code>。<code>console.log(typeof(+new Date()));</code>得到number类型。<br>这里比较奇怪的是new Date()对象竟然可以成功转为number类型，以后再也不用get.time()方法了。</p>
 <h3 id="2、"><a href="#2、" class="headerlink" title="2、-"></a>2、-</h3><p>减法跟加法一致，都是把后面的内容变为数字，只不过还会对该值求负。和上面一样如果转不了就返回NaN也符合Number()的特征。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sNum = <span class="string">"20"</span>;</div><div class="line">alert(<span class="keyword">typeof</span> sNum);	<span class="comment">//输出 "string"</span></div><div class="line"><span class="keyword">var</span> iNum = -sNum;</div><div class="line">alert(iNum);		<span class="comment">//输出 "-20"</span></div><div class="line">alert(<span class="keyword">typeof</span> iNum);	<span class="comment">//输出 "number"</span></div></pre></td></tr></table></figure></p>
@@ -574,7 +574,7 @@
     
     <entry>
       <title><![CDATA[console打印dom对象]]></title>
-      <url>/blog/2017/07/07/console%E6%89%93%E5%8D%B0dom%E5%AF%B9%E8%B1%A1/</url>
+      <url>/2017/07/07/console%E6%89%93%E5%8D%B0dom%E5%AF%B9%E8%B1%A1/</url>
       <content type="html"><![CDATA[<p>在操作dom时，可能会需要在控制台查看Dom对象的属性方法（比差文档快多了），本篇就介绍了这样的方法<a id="more"></a></p>
 <h2 id="一、原生和jqDom对象console对比"><a href="#一、原生和jqDom对象console对比" class="headerlink" title="一、原生和jqDom对象console对比"></a>一、原生和jqDom对象console对比</h2><p>我们想要获得原生Dom的属性方法，像这样：<br><img src="/blog/myimages/consoleDom/p1.png" alt="打印的Dom详细"><br>这里可以看到一切。我们知道jquery是很好在控制台输出的，只要有$(“”)选择器查找到元素console一下就会得到：<br><img src="/blog/myimages/consoleDom/p2.png" alt="打印的jqDom"><br>0的位置是htmlDom,但是下面的方法就是jq的方法了。很简单可以自己试一下。<br>但是正题来了怎样才能在控制台console原生Dom对象呢？</p>
 <h2 id="二、在控制台输出原生对象的方法"><a href="#二、在控制台输出原生对象的方法" class="headerlink" title="二、在控制台输出原生对象的方法"></a>二、在控制台输出原生对象的方法</h2><pre><code>&lt;div id=&quot;d1&quot;&gt;&lt;div id=&quot;d2&quot;&gt;&lt;/div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
@@ -601,7 +601,7 @@ console.log(d2.nextSibling);//文本
     
     <entry>
       <title><![CDATA[console.log一个奇怪的问题]]></title>
-      <url>/blog/2017/07/01/console/</url>
+      <url>/2017/07/01/console/</url>
       <content type="html"><![CDATA[<p>最近遇到一个关于console.log奇怪的问题，搞得我是百思不得其解，写出来做一下记录:<br><a id="more"></a><br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a=&#123;<span class="built_in">name</span>:<span class="number">1</span>&#125;;</div><div class="line">console.<span class="built_in">log</span>(a);</div><div class="line">a.<span class="built_in">name</span>=<span class="number">2</span>;</div><div class="line">console.<span class="built_in">log</span>(a);</div></pre></td></tr></table></figure></p>
 <p>结果显而易见是name:1;name:2啊，但打开控制台，呵呵：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span> </div><div class="line">	name: <span class="string">"2"</span></div><div class="line">	__proto__: <span class="built_in">Object</span></div><div class="line"><span class="built_in">Object</span></div><div class="line">	name: <span class="string">"2"</span></div><div class="line">	__proto__: <span class="built_in">Object</span></div></pre></td></tr></table></figure></p>
 <p>完了感觉自己白学js了，当我抱着怀疑人生的态度刷新了一遍浏览器之后，终于见到我想见的答案了：</p>
@@ -623,7 +623,7 @@ console.log(d2.nextSibling);//文本
     
     <entry>
       <title><![CDATA[Pagination分页增加页面跳转功能]]></title>
-      <url>/blog/2017/05/26/pagination/</url>
+      <url>/2017/05/26/pagination/</url>
       <content type="html"><![CDATA[<p>Pagination是JQuery一款十分经典的分页插件，我在之前的基础上做了一点很小的改动：1、增加了页码输入跳转的功能，可以自己决定是否出现此功能。2、增加一个点击事件函数，返回点击的页码，可以实现ajax分次请求<a id="more"></a>  </p>
 <p><a href="http://oljtqy7i8.bkt.clouddn.com/pagination.zip" title="js和css源码" target="_blank" rel="external">Pagination源码下载</a></p>
 <h2 id="一、pagination使用方法"><a href="#一、pagination使用方法" class="headerlink" title="一、pagination使用方法"></a>一、pagination使用方法</h2><h3 id="1、使用方法"><a href="#1、使用方法" class="headerlink" title="1、使用方法"></a>1、使用方法</h3><p>跟一般的jQuery插件一样，此插件需要引入jq,使用也很简单便捷。方法是pagination，例如<code>$(&quot;#page&quot;).pagination(100);</code>，这里的100参数是必须的，表示显示项目的总个数，这是最简单的使用，得到的显示如下：<br><img src="/blog/myimages/pagination/p1.png" alt="展示效果"></p>
@@ -662,7 +662,7 @@ console.log(d2.nextSibling);//文本
     
     <entry>
       <title><![CDATA[JQ的四种绑定方式]]></title>
-      <url>/blog/2017/04/28/jq%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E6%96%B9%E5%BC%8F/</url>
+      <url>/2017/04/28/jq%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E6%96%B9%E5%BC%8F/</url>
       <content type="html"><![CDATA[<h2 id="一、bind-unbind方法"><a href="#一、bind-unbind方法" class="headerlink" title="一、bind unbind方法"></a>一、bind unbind方法</h2><p>bind的特点就是会把监听器绑定到目标元素上，有几个事件就绑定几个，它和<code>$(selector).click(function)</code>是一样的。既然是绑定在目标元素上，也就是这个目标元素在绑定此事件的js执行完时，必须存在于页面上，此事件绑定才算成功。而之后页面动态添加的元素则不会绑定这个事件。<a id="more"></a><br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(selector).<span class="keyword">bind</span>(event,<span class="keyword">data</span>,<span class="function"><span class="keyword">function</span></span>)</div></pre></td></tr></table></figure></p>
 <h2 id="二、live-die方法"><a href="#二、live-die方法" class="headerlink" title="二、live die方法"></a>二、live die方法</h2><p>live方法利用了事件代理的方法把监听器绑定到document，这样就即使是动态添加的事件也不需要重新绑定了。但是这个还是有一定问题的，他把事件监听放在document上，目标事件要层层冒泡才能触发，这显然是是影响性能浪费时间，不建议使用此方法。jQuery官方已宣布在1.7版本开始废弃，1.9版本移除live方法。那么事件委托就交给delegate。<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(selector).live(event,<span class="keyword">data</span>,<span class="function"><span class="keyword">function</span></span>)</div></pre></td></tr></table></figure></p>
 <h2 id="三、delegate-undelegate方法"><a href="#三、delegate-undelegate方法" class="headerlink" title="三、delegate undelegate方法"></a>三、delegate undelegate方法</h2><p>delegate方法是live方法的改进版。于bind方法不同，delegate方法显然就聪明多了，它可以让你自由的选择绑定监听的元素，我们可以选择里目标元素最近的父元素上，能让事件快速的冒泡上去，在第一时间处理。<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(parentSelector).delegate(selector,event,<span class="keyword">data</span>,<span class="function"><span class="keyword">function</span></span>)</div></pre></td></tr></table></figure></p>
@@ -680,7 +680,7 @@ console.log(d2.nextSibling);//文本
     
     <entry>
       <title><![CDATA[写在前面的话]]></title>
-      <url>/blog/2017/04/26/hexo-GitHub-Pages-Dropbox-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+      <url>/2017/04/26/hexo-GitHub-Pages-Dropbox-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
       <content type="html"><![CDATA[<p>从今天开始我的个人博客总算是初具模型了，虽然很简陋但也算是自己小窝了。对于建立自己个人博客，自己很久之前就是有这个想法的，但中间各种事(自己的拖延症的借口)，加上自己水平有限，就一拖再拖了。<br>临近毕业，正好赶上要作毕业设计，就突发奇想看看能不能做一个博客交差呢？即使不行，还可以督促自己完成构建个人博客，怎么算都是赚的。<a id="more"></a>于是就有了这个博客的雏形，还有感谢这个主题的创建者还有网上超牛的博主，他们的无私分享让我受益无穷(生活在当今世界真是幸运）。<br>当然这只是个初级版本，今后还会努力建设自己的小窝的。</p>
 ]]></content>
       
