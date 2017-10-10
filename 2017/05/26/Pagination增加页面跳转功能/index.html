@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://github.com/myimages/Pagination分页增加页面跳转功能/p1.png">
 <meta property="og:image" content="https://github.com/myimages/Pagination分页增加页面跳转功能/p2.png">
 <meta property="og:image" content="https://github.com/myimages/Pagination分页增加页面跳转功能/p3.png">
-<meta property="og:updated_time" content="2017-10-09T08:08:36.567Z">
+<meta property="og:updated_time" content="2017-10-10T02:21:00.994Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pagination分页增加页面跳转功能">
 <meta name="twitter:description" content="Pagination是JQuery一款十分经典的分页插件，我在之前的基础上做了一点很小的改动：  1、增加了页码输入跳转的功能，可以自己决定是否出现此功能。 2、增加一个点击事件函数，返回点击的页码，可以实现ajax分次请求">
@@ -400,7 +400,7 @@
 <li>2、增加一个点击事件函数，返回点击的页码，可以实现ajax分次请求</li>
 </ul>
 <a id="more"></a>  
-<p><a href="http://oljtqy7i8.bkt.clouddn.com/pagination.zip" title="js和css源码" target="_blank" rel="external">Pagination源码下载</a></p>
+<p><a href="http://oljtqy7i8.bkt.clouddn.com/pagination.zip" title="js和css源码" target="_blank" rel="external">Pagination改进版下载</a></p>
 <h2 id="一、pagination使用方法"><a href="#一、pagination使用方法" class="headerlink" title="一、pagination使用方法"></a>一、pagination使用方法</h2><h3 id="1、使用方法"><a href="#1、使用方法" class="headerlink" title="1、使用方法"></a>1、使用方法</h3><p>跟一般的jQuery插件一样，此插件需要引入jq,使用也很简单便捷。方法是pagination，例如<code>$(&quot;#page&quot;).pagination(100);</code>，这里的100参数是必须的，表示显示项目的总个数，这是最简单的使用，得到的显示如下：<br><img src="/myimages/Pagination分页增加页面跳转功能/p1.png" alt="展示效果"></p>
 <h3 id="2、参数详解"><a href="#2、参数详解" class="headerlink" title="2、参数详解"></a>2、参数详解</h3><figure class="highlight dts"><table><tr><td class="code"><pre><div class="line">这是参数的默认值，可以自行修改</div><div class="line">&#123;</div><div class="line"><span class="symbol">    items_per_page:</span><span class="number">10</span>,<span class="comment">//每页数目</span></div><div class="line"><span class="symbol">    num_display_entries:</span><span class="number">10</span>,<span class="comment">//中间数目</span></div><div class="line"><span class="symbol">    current_page:</span><span class="number">0</span>,<span class="comment">//当前页数</span></div><div class="line"><span class="symbol">    num_edge_entries:</span><span class="number">0</span>,<span class="comment">//边缘数目</span></div><div class="line"><span class="symbol">    link_to:</span><span class="string">"#"</span>,</div><div class="line"><span class="symbol">    prev_text:</span><span class="string">"Prev"</span>,</div><div class="line"><span class="symbol">    next_text:</span><span class="string">"Next"</span>,</div><div class="line"><span class="symbol">    ellipse_text:</span><span class="string">"..."</span>,<span class="comment">//中间多想代替文字</span></div><div class="line"><span class="symbol">    prev_show_always:</span>true,<span class="comment">//上一页是否展示</span></div><div class="line"><span class="symbol">    next_show_always:</span>true,<span class="comment">//下一个页是否展示</span></div><div class="line"><span class="symbol">    ifGo:</span>false,<span class="comment">//决定是否出现跳转功能</span></div><div class="line"><span class="symbol">    ifGo_text:</span><span class="string">"Go"</span>,<span class="comment">//跳转到文字</span></div><div class="line"><span class="symbol">    a_fn:</span>function()&#123;return false;&#125;,<span class="comment">//每次单击的触发的事件（返回页码，可以ajax请求）</span></div><div class="line"><span class="symbol">    callback:</span>function()&#123;return false;&#125;<span class="comment">//每次单击的回调函数</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="3、使用举例"><a href="#3、使用举例" class="headerlink" title="3、使用举例"></a>3、使用举例</h3><h4 id="1、原版"><a href="#1、原版" class="headerlink" title="1、原版"></a>1、原版</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">&lt;div id=<span class="string">"page"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"pagination"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">$(<span class="string">"#Pagination"</span>).pagination(<span class="number">56</span>, &#123;</div><div class="line">    <span class="attr">num_edge_entries</span>: <span class="number">2</span>,</div><div class="line">    <span class="attr">num_display_entries</span>: <span class="number">4</span>,</div><div class="line">    <span class="attr">callback</span>: pageselectCallback,</div><div class="line">    <span class="attr">items_per_page</span>:<span class="number">1</span>，</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
@@ -544,7 +544,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

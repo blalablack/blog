@@ -97,7 +97,7 @@
 <meta property="og:url" content="https://github.com/blalablack/blog/2017/07/07/一元运算符/index.html">
 <meta property="og:site_name" content="Lip's Blog">
 <meta property="og:description" content="最近看到一个+new Date()的语法方式，就顺便研究了一下一元运算符，此篇主要介绍了一元运算符。">
-<meta property="og:updated_time" content="2017-09-07T05:35:30.626Z">
+<meta property="og:updated_time" content="2017-10-10T02:50:52.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一元运算符">
 <meta name="twitter:description" content="最近看到一个+new Date()的语法方式，就顺便研究了一下一元运算符，此篇主要介绍了一元运算符。">
@@ -391,7 +391,7 @@
 
       
         <p>最近看到一个+new Date()的语法方式，就顺便研究了一下一元运算符，此篇主要介绍了一元运算符。<a id="more"></a></p>
-<h2 id="一、-运算符"><a href="#一、-运算符" class="headerlink" title="一、+-运算符"></a>一、+-运算符</h2><h3 id="1、"><a href="#1、" class="headerlink" title="1、+"></a>1、+</h3><p>那就从+new Date()语法开始，其实这里并没有什么高级语法，只是+会把后面的内容变为number类型（对数字无效）。这里的<code>+new Date()=Number(new Date())</code>。<code>console.log(typeof(+new Date()));</code>得到number类型。<br>这里比较奇怪的是new Date()对象竟然可以成功转为number类型，以后再也不用get.time()方法了。</p>
+<h2 id="一、-运算符"><a href="#一、-运算符" class="headerlink" title="一、+-运算符"></a>一、+-运算符</h2><h3 id="1、"><a href="#1、" class="headerlink" title="1、+"></a>1、+</h3><p>那就从+new Date()语法开始，其实这里并没有什么高级语法，只是+会把后面的内容变为number类型（对数字无效）。这里的<code>+new Date()=Number(new Date())</code>。<code>console.log(typeof(+new Date()));</code>得到number类型。<br>这里比较厉害的是<strong>new Date()对象竟然可以成功转为number类型</strong>，以后再也不用get.time()方法了。</p>
 <h3 id="2、"><a href="#2、" class="headerlink" title="2、-"></a>2、-</h3><p>减法跟加法一致，都是把后面的内容变为数字，只不过还会对该值求负。和上面一样如果转不了就返回NaN也符合Number()的特征。<br><figure class="highlight actionscript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> sNum = <span class="string">"20"</span>;</div><div class="line">alert(<span class="keyword">typeof</span> sNum);	<span class="comment">//输出 "string"</span></div><div class="line"><span class="keyword">var</span> iNum = -sNum;</div><div class="line">alert(iNum);		<span class="comment">//输出 "-20"</span></div><div class="line">alert(<span class="keyword">typeof</span> iNum);	<span class="comment">//输出 "number"</span></div></pre></td></tr></table></figure></p>
 <h2 id="二、-a和a"><a href="#二、-a和a" class="headerlink" title="二、++a和a++"></a>二、++a和a++</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="number">3</span>;</div><div class="line"><span class="built_in">console</span>.log(++a);<span class="comment">//输出4</span></div><div class="line"><span class="keyword">var</span> b=<span class="number">3</span>;</div><div class="line"><span class="built_in">console</span>.log(b++);<span class="comment">//输出3</span></div></pre></td></tr></table></figure>
 <p>这个就是“先执行再运算”和“先运算再执行”，其实也好记，加号在前边就是先加自己在管其他。</p>
@@ -520,7 +520,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
