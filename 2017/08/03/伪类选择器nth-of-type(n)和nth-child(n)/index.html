@@ -90,17 +90,20 @@
 
 
 
-<meta name="description" content="最近看到一个+new Date()的语法方式，就顺便研究了一下一元运算符，此篇主要介绍了一元运算符。">
+<meta name="description" content="主要介绍了伪类选择器:nth-of-type(n)和:nth-child(n)的区别">
 <meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一元运算符">
-<meta property="og:url" content="https://github.com/blalablack/blog/2017/07/07/一元运算符/index.html">
+<meta property="og:title" content="伪类选择器:nth-of-type(n)和:nth-child(n)">
+<meta property="og:url" content="https://github.com/blalablack/blog/2017/08/03/伪类选择器nth-of-type(n)和nth-child(n)/index.html">
 <meta property="og:site_name" content="Lip's Blog">
-<meta property="og:description" content="最近看到一个+new Date()的语法方式，就顺便研究了一下一元运算符，此篇主要介绍了一元运算符。">
-<meta property="og:updated_time" content="2017-10-10T02:50:52.572Z">
+<meta property="og:description" content="主要介绍了伪类选择器:nth-of-type(n)和:nth-child(n)的区别">
+<meta property="og:image" content="https://github.com/myimages/css知识点/p1.png">
+<meta property="og:image" content="https://github.com/myimages/css知识点/p2.png">
+<meta property="og:updated_time" content="2017-10-11T07:42:17.069Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一元运算符">
-<meta name="twitter:description" content="最近看到一个+new Date()的语法方式，就顺便研究了一下一元运算符，此篇主要介绍了一元运算符。">
+<meta name="twitter:title" content="伪类选择器:nth-of-type(n)和:nth-child(n)">
+<meta name="twitter:description" content="主要介绍了伪类选择器:nth-of-type(n)和:nth-child(n)的区别">
+<meta name="twitter:image" content="https://github.com/myimages/css知识点/p1.png">
 
 
 
@@ -128,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/blalablack/blog/2017/07/07/一元运算符/"/>
+  <link rel="canonical" href="https://github.com/blalablack/blog/2017/08/03/伪类选择器nth-of-type(n)和nth-child(n)/"/>
 
 
 
 
 
-  <title>一元运算符 | Lip's Blog</title>
+  <title>伪类选择器:nth-of-type(n)和:nth-child(n) | Lip's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -297,7 +300,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/2017/07/07/一元运算符/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/2017/08/03/伪类选择器nth-of-type(n)和nth-child(n)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lip">
@@ -318,7 +321,7 @@
             
             
               
-                一元运算符
+                伪类选择器:nth-of-type(n)和:nth-child(n)
               
             
           </h1>
@@ -333,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-07T18:51:36+08:00">
-                2017-07-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T10:39:39+08:00">
+                2017-08-03
               </time>
             
 
@@ -356,8 +359,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
                   </a>
                 </span>
 
@@ -390,16 +393,17 @@
       
 
       
-        <p>最近看到一个+new Date()的语法方式，就顺便研究了一下一元运算符，此篇主要介绍了一元运算符。<a id="more"></a></p>
-<h2 id="一、-运算符"><a href="#一、-运算符" class="headerlink" title="一、+-运算符"></a>一、+-运算符</h2><h3 id="1、"><a href="#1、" class="headerlink" title="1、+"></a>1、+</h3><p>那就从+new Date()语法开始，其实这里并没有什么高级语法，只是+会把后面的内容变为number类型（对数字无效）。这里的<code>+new Date()=Number(new Date())</code>。<code>console.log(typeof(+new Date()));</code>得到number类型。<br>这里比较厉害的是<strong>new Date()对象竟然可以成功转为number类型</strong>，以后再也不用get.time()方法了。</p>
-<h3 id="2、"><a href="#2、" class="headerlink" title="2、-"></a>2、-</h3><p>减法跟加法一致，都是把后面的内容变为数字，只不过还会对该值求负。和上面一样如果转不了就返回NaN也符合Number()的特征。<br><figure class="highlight actionscript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> sNum = <span class="string">"20"</span>;</div><div class="line">alert(<span class="keyword">typeof</span> sNum);	<span class="comment">//输出 "string"</span></div><div class="line"><span class="keyword">var</span> iNum = -sNum;</div><div class="line">alert(iNum);		<span class="comment">//输出 "-20"</span></div><div class="line">alert(<span class="keyword">typeof</span> iNum);	<span class="comment">//输出 "number"</span></div></pre></td></tr></table></figure></p>
-<h2 id="二、-a和a"><a href="#二、-a和a" class="headerlink" title="二、++a和a++"></a>二、++a和a++</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="number">3</span>;</div><div class="line"><span class="built_in">console</span>.log(++a);<span class="comment">//输出4</span></div><div class="line"><span class="keyword">var</span> b=<span class="number">3</span>;</div><div class="line"><span class="built_in">console</span>.log(b++);<span class="comment">//输出3</span></div></pre></td></tr></table></figure>
-<p>这个就是“先执行再运算”和“先运算再执行”，其实也好记，加号在前边就是先加自己在管其他。</p>
-<h2 id="三、void、delete"><a href="#三、void、delete" class="headerlink" title="三、void、delete"></a>三、void、delete</h2><h3 id="1、delete"><a href="#1、delete" class="headerlink" title="1、delete"></a>1、delete</h3><p>delete运算符可以将自定义的属性和方法删除：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>;</div><div class="line">o.name = <span class="string">"David"</span>;</div><div class="line">alert(o.name);	<span class="comment">//输出 "David"</span></div><div class="line"><span class="keyword">delete</span> o.name;</div><div class="line">alert(o.name);	<span class="comment">//输出 "undefined"</span></div></pre></td></tr></table></figure></p>
-<p>此运算符在发生原型遮蔽时删除属性：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">Person.prototype.name=<span class="string">"Lee"</span>;</div><div class="line"><span class="keyword">var</span> person1=<span class="keyword">new</span> Person();</div><div class="line">person1.name=<span class="string">"James"</span>;</div><div class="line"><span class="built_in">console</span>.log(person1.name);<span class="comment">//James</span></div><div class="line"><span class="comment">//这里不论是怎样赋值name(null或"")都只会在person1这个实例中修改，</span></div><div class="line"><span class="comment">//原型的方法还是会被遮蔽。这时delete方法的作用就体现出来了。</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> person1.name;</div><div class="line"><span class="built_in">console</span>.log(person1.name);<span class="comment">//Lee</span></div></pre></td></tr></table></figure></p>
-<p>同时我们也发现，对于Javascript内置的属性和方法是不行的:<br><figure class="highlight n1ql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">delete</span> o.<span class="built_in">toString</span>;//报错</div></pre></td></tr></table></figure></p>
-<p>toString()是JavaScript原生方法。</p>
-<h3 id="2、void"><a href="#2、void" class="headerlink" title="2、void"></a>2、void</h3><p>void 运算符对任何值返回 undefined。该运算符通常用于避免输出不应该输出的值。例如<code>&lt;a href=&quot;javascript:void(back())&quot;&gt;</code>这里点击a即执行了back事件，有避免了页面跳转。</p>
+        <p>主要介绍了伪类选择器<code>:nth-of-type(n)</code>和<code>:nth-child(n)</code>的区别<a id="more"></a></p>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>p:nth-of-type(n)：选择位于其父元素内部p元素的第n个位置的p元素。<br>p:nth-child(n)：选择位于其父元素第n个位置的p元素。<br>字面意思就是:nth-of-type(n)是分类的，而:nth-child(n)不分类（只要是子元素都算）。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight dts"><table><tr><td class="code"><pre><div class="line"><span class="params">&lt;div id='d1'&gt;</span></div><div class="line">  <span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">  <span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line">  <span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">  <span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line"><span class="params">&lt;/div&gt;</span></div><div class="line"><span class="meta">#d1 div:nth-of-type(1)&#123;</span></div><div class="line"><span class="symbol">  background:</span> <span class="meta">#ddd;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>nth-of-type(n)会只找div忽略p所以才会找到<br><img src="/myimages/css知识点/p1.png" alt="效果"><br><figure class="highlight dts"><table><tr><td class="code"><pre><div class="line"><span class="params">&lt;div id='d1'&gt;</span></div><div class="line">  <span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">  <span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line">  <span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">  <span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line"><span class="params">&lt;/div&gt;</span></div><div class="line"><span class="meta">#d1 div:nth-child(1)&#123;</span></div><div class="line"><span class="symbol">  background:</span> <span class="meta">#ddd;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/myimages/css知识点/p2.png" alt="效果"><br>nth-child(n)只要是子元素都算上，这里的div就不是第一个元素了所以找不到。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>1、就是带着type的都会分类，不带的不会分类，子元素都算上。</li>
+<li>2、<code>:nth-of-type(n)</code>比较符合使用习惯。</li>
+<li>3、是css3选择器，有兼容性。</li>
+<li>4、这些都不能和类选择器，id选择器结合使用（：前面必须是元素名称）。</li>
+</ul>
 
       
     </div>
@@ -436,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/12/函数节流/" rel="next" title="函数节流">
-                <i class="fa fa-chevron-left"></i> 函数节流
+              <a href="/2017/08/07/继承/" rel="next" title="继承">
+                <i class="fa fa-chevron-left"></i> 继承
               </a>
             
           </div>
@@ -446,8 +450,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/07/console打印dom对象/" rel="prev" title="console打印dom对象">
-                console打印dom对象 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/02/创建对象/" rel="prev" title="创建对象">
+                创建对象 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -588,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-运算符"><span class="nav-number">1.</span> <span class="nav-text">一、+-运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、"><span class="nav-number">1.1.</span> <span class="nav-text">1、+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、"><span class="nav-number">1.2.</span> <span class="nav-text">2、-</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、-a和a"><span class="nav-number">2.</span> <span class="nav-text">二、++a和a++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、void、delete"><span class="nav-number">3.</span> <span class="nav-text">三、void、delete</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、delete"><span class="nav-number">3.1.</span> <span class="nav-text">1、delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、void"><span class="nav-number">3.2.</span> <span class="nav-text">2、void</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解释"><span class="nav-number">1.</span> <span class="nav-text">解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

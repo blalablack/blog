@@ -3,10 +3,48 @@
   
     
     <entry>
+      <title><![CDATA[css hover实现子元素变化]]></title>
+      <url>/2017/10/11/css-hover%E5%AE%9E%E7%8E%B0%E5%AD%90%E5%85%83%E7%B4%A0%E5%8F%98%E5%8C%96/</url>
+      <content type="html"><![CDATA[<p>实现鼠标移入某个元素改变其子元素的样式，通常想到的都是通过js的mouseenter或者mouseover实现。其实这个是可以用hover纯css实现。减少多余事件绑定和dom操作，优化性能。<a id="more"></a></p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight stata"><table><tr><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  &lt;<span class="keyword">li</span>&gt;第一个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;</div><div class="line">  &lt;<span class="keyword">li</span> <span class="keyword">class</span>=<span class="string">"second"</span>&gt;第二个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;</div><div class="line">  &lt;<span class="keyword">li</span>&gt;第三个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;</div><div class="line">  &lt;<span class="keyword">li</span>&gt;第四个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">ul</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.second</span>&#123;</div><div class="line">  <span class="attribute">background</span>:<span class="number">#ddd</span>;</div><div class="line">  <span class="attribute">color</span>:<span class="number">#cc80dd</span>;</div><div class="line">  <span class="attribute">padding-left</span>:<span class="number">200px</span>;</div><div class="line">  <span class="attribute">margin-top</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">li</span>&#123;</div><div class="line">  <span class="attribute">transition</span>:all <span class="number">1s</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">20px</span>;</div><div class="line">  <span class="comment">/*其余的都有默认值*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>意思是给定ul<code>hover</code>，但是ul下面的第二li样式改变（所有的样式改变都可以）。</p>
+<blockquote>
+<p>所有hover之后的样式，hover之前都要有，不然会闪回。<br>浏览器调试时查看hover样式一定要选中ul的hover，然后看.second的样式。</p>
+</blockquote>
+<h3 id="mouseenter和mouseover"><a href="#mouseenter和mouseover" class="headerlink" title="mouseenter和mouseover"></a>mouseenter和mouseover</h3><p>区别：</p>
+<ul>
+<li>1、mouseenter/mouseleave不支持冒泡</li>
+<li>2、mouseenter/mouseleave父子元素不会触发，mouseover/mouseout会触发。</li>
+</ul>
+<p>一般比较喜欢用mouseenter/mouseleave，不会出现小问题。同时冒泡是子父元素定义相同事件，子事件触发会冒泡到父元素上，导致父元素触发。父子元素不触发跟不冒泡没有半毛钱关系。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>1、没有兼容问题，只要支持hover就行。</li>
+<li>2、只要是是元素的子类就行都可以实现样式变化</li>
+<li>3、所有样式都支持。</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> CSS </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[es6的继承]]></title>
       <url>/2017/10/10/es6%E7%9A%84%E7%BB%A7%E6%89%BF/</url>
       <content type="html"></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -15,6 +53,12 @@
       <url>/2017/10/10/%E6%94%B9%E5%8F%98this%E7%9A%84%E6%96%B9%E6%B3%95/</url>
       <content type="html"></content>
       
+        <categories>
+            
+            <category> Javascript </category>
+            
+        </categories>
+        
         
     </entry>
     
@@ -246,6 +290,12 @@
 <h3 id="5、远程仓库"><a href="#5、远程仓库" class="headerlink" title="5、远程仓库"></a>5、远程仓库</h3><p>在gitHub上创建个仓库，按照提示在本地操作即可，ssh需要配置key参考<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" title="网站链接" target="_blank" rel="external">廖老师网站</a>，origin可以替换为你的仓库名。之后再提交<code>$ git push origin master</code>。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> Git </category>
+            
+        </categories>
+        
         
         <tags>
             
@@ -404,15 +454,19 @@
     </entry>
     
     <entry>
-      <title><![CDATA[css知识点]]></title>
-      <url>/2017/08/03/css%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
-      <content type="html"><![CDATA[<p>一些css知识和使用技巧的总结<a id="more"></a></p>
-<h3 id="一、-nth-of-type-n-和-nth-child-n"><a href="#一、-nth-of-type-n-和-nth-child-n" class="headerlink" title="一、:nth-of-type(n)和:nth-child(n)"></a>一、:nth-of-type(n)和:nth-child(n)</h3><p>p:nth-of-type(n)：选择位于其父元素内部p元素的第n个位置的p元素。<br>p:nth-child(n)：选择位于其父元素第n个位置的p元素。<br>字面意思就是:nth-of-type(n)是分类的，而:nth-child(n)不分类（只要是子元素都算）。<br>例如：<br><figure class="highlight dts"><table><tr><td class="code"><pre><div class="line"><span class="params">&lt;div id='d1'&gt;</span></div><div class="line">  <span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">  <span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line">  <span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">  <span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line"><span class="params">&lt;/div&gt;</span></div><div class="line"><span class="meta">#d1 div:nth-of-type(1)&#123;</span></div><div class="line"><span class="symbol">  background:</span> <span class="meta">#ddd;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+      <title><![CDATA[伪类选择器:nth-of-type(n)和:nth-child(n)]]></title>
+      <url>/2017/08/03/%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8nth-of-type(n)%E5%92%8Cnth-child(n)/</url>
+      <content type="html"><![CDATA[<p>主要介绍了伪类选择器<code>:nth-of-type(n)</code>和<code>:nth-child(n)</code>的区别<a id="more"></a></p>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>p:nth-of-type(n)：选择位于其父元素内部p元素的第n个位置的p元素。<br>p:nth-child(n)：选择位于其父元素第n个位置的p元素。<br>字面意思就是:nth-of-type(n)是分类的，而:nth-child(n)不分类（只要是子元素都算）。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight dts"><table><tr><td class="code"><pre><div class="line"><span class="params">&lt;div id='d1'&gt;</span></div><div class="line">  <span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">  <span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line">  <span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">  <span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line"><span class="params">&lt;/div&gt;</span></div><div class="line"><span class="meta">#d1 div:nth-of-type(1)&#123;</span></div><div class="line"><span class="symbol">  background:</span> <span class="meta">#ddd;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>nth-of-type(n)会只找div忽略p所以才会找到<br><img src="/myimages/css知识点/p1.png" alt="效果"><br><figure class="highlight dts"><table><tr><td class="code"><pre><div class="line"><span class="params">&lt;div id='d1'&gt;</span></div><div class="line">  <span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">  <span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line">  <span class="params">&lt;p&gt;</span>我是p<span class="params">&lt;/p&gt;</span></div><div class="line">  <span class="params">&lt;div&gt;</span>我是div<span class="params">&lt;/div&gt;</span></div><div class="line"><span class="params">&lt;/div&gt;</span></div><div class="line"><span class="meta">#d1 div:nth-child(1)&#123;</span></div><div class="line"><span class="symbol">  background:</span> <span class="meta">#ddd;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><img src="/myimages/css知识点/p2.png" alt="效果"><br>nth-child(n)只要是子元素都算上，这里的div就不是第一个元素了所以找不到。<br><strong>总结</strong><br>就是带着type的都会分类，不带的不会分类，子元素都算上。感觉:nth-of-type(n)比较符合使用习惯。<br>注：这些都不能和类选择器，id选择器结合使用。</p>
-<h3 id="二、hover的一个妙用"><a href="#二、hover的一个妙用" class="headerlink" title="二、hover的一个妙用"></a>二、hover的一个妙用</h3><figure class="highlight stata"><table><tr><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  &lt;<span class="keyword">li</span>&gt;第一个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;</div><div class="line">  &lt;<span class="keyword">li</span> <span class="keyword">class</span>=<span class="string">"second"</span>&gt;第二个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;</div><div class="line">  &lt;<span class="keyword">li</span>&gt;第三个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;</div><div class="line">  &lt;<span class="keyword">li</span>&gt;第四个<span class="keyword">li</span>&lt;/<span class="keyword">li</span>&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">ul</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.second</span>&#123;</div><div class="line">  <span class="attribute">background</span>:<span class="number">#ddd</span>;</div><div class="line">  <span class="attribute">color</span>:<span class="number">#cc80dd</span>;</div><div class="line">  <span class="attribute">padding-left</span>:<span class="number">200px</span>;</div><div class="line">  <span class="attribute">margin-top</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">li</span>&#123;</div><div class="line">  <span class="attribute">transition</span>:all <span class="number">1s</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">20px</span>;</div><div class="line">  <span class="comment">/*其余的都有默认值*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>意思是给定#d1 hover事件，但是#d1的子元素样式改变（所有的样式改变都可以），所有的浏览器都支持。之前要用js写的功能，css就能搞定，是不是很厉害啊。<br>注：所有hover之后的样式，hover之前都要有，不然会闪回。</p>
+<p><img src="/myimages/css知识点/p2.png" alt="效果"><br>nth-child(n)只要是子元素都算上，这里的div就不是第一个元素了所以找不到。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>1、就是带着type的都会分类，不带的不会分类，子元素都算上。</li>
+<li>2、<code>:nth-of-type(n)</code>比较符合使用习惯。</li>
+<li>3、是css3选择器，有兼容性。</li>
+<li>4、这些都不能和类选择器，id选择器结合使用（：前面必须是元素名称）。</li>
+</ul>
 ]]></content>
       
         <categories>
@@ -486,11 +540,19 @@
       <title><![CDATA[探究this]]></title>
       <url>/2017/07/16/%E6%8E%A2%E7%A9%B6this/</url>
       <content type="html"><![CDATA[<p>此篇结合是我在看《你不知道的JavaScript》对this绑定的一些心得体会和记录。<a id="more"></a></p>
-<h2 id="this的绑定规则"><a href="#this的绑定规则" class="headerlink" title="this的绑定规则"></a>this的绑定规则</h2><h3 id="一、默认绑定"><a href="#一、默认绑定" class="headerlink" title="一、默认绑定"></a>一、默认绑定</h3><p>独立函数调用，函数直接使用不带任何修饰的函数引用进行调用。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">defaultFn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line">defaultFn();<span class="comment">//2</span></div></pre></td></tr></table></figure></p>
-<p>本例中（非严格模式）this指向全局对象。</p>
-<h3 id="二、隐式绑定"><a href="#二、隐式绑定" class="headerlink" title="二、隐式绑定"></a>二、隐式绑定</h3><p>必须在对象内部包含一个指向函数的属性，并通过这个属性间接引用函数，从而把this间接（隐式）绑定到这个对象上。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">unTypeFn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">1</span>,</div><div class="line">	<span class="attr">foo</span>:unTypeFn</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line">obj.foo();<span class="comment">//1</span></div></pre></td></tr></table></figure></p>
+<h2 id="this永远指向最后调用它的那个对象。"><a href="#this永远指向最后调用它的那个对象。" class="headerlink" title="this永远指向最后调用它的那个对象。"></a>this永远指向最后调用它的那个对象。</h2><p>判读this指向的真理</p>
+<h2 id="函数调用方式"><a href="#函数调用方式" class="headerlink" title="函数调用方式"></a>函数调用方式</h2><ul>
+<li>1、作为函数直接调用</li>
+<li>2、作为方法调用</li>
+<li>3、使用函数的方法调用（call,apply,bind）</li>
+<li>4、构造函数new调用</li>
+</ul>
+<p>下面我会结合书中介绍的this绑定规则（其实就是函数的几种调用方式）来做详细的介绍</p>
+<h2 id="this的绑定规则"><a href="#this的绑定规则" class="headerlink" title="this的绑定规则"></a>this的绑定规则</h2><h3 id="一、默认绑定（作为函数直接调用）"><a href="#一、默认绑定（作为函数直接调用）" class="headerlink" title="一、默认绑定（作为函数直接调用）"></a>一、默认绑定（作为函数直接调用）</h3><p>独立函数调用，函数直接使用不带任何修饰的函数引用进行调用。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">defaultFn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line">defaultFn();<span class="comment">//2</span></div></pre></td></tr></table></figure></p>
+<p>dafaultFn函数直接调用，this指向window。</p>
+<h3 id="二、隐式绑定（作为方法调用）"><a href="#二、隐式绑定（作为方法调用）" class="headerlink" title="二、隐式绑定（作为方法调用）"></a>二、隐式绑定（作为方法调用）</h3><p>必须在对象内部包含一个指向函数的属性，并通过这个属性间接引用函数，从而把this间接（隐式）绑定到这个对象上。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">unTypeFn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">1</span>,</div><div class="line">	<span class="attr">foo</span>:unTypeFn</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line">obj.foo();<span class="comment">//1</span></div></pre></td></tr></table></figure></p>
 <p>在obj对象中包含一个unTypeFn的引用，在通过obj调用unTypeFn时，this被自然的绑定到obj上，没毛病。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">unTypeFn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">1</span>,</div><div class="line">	<span class="attr">obj1</span>:obj1</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obi1=&#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">3</span>,</div><div class="line">	<span class="attr">foo</span>:unTypeFn</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line">obj.obj1.foo();<span class="comment">//3</span></div></pre></td></tr></table></figure></p>
-<p>上面最后调用foo的是obj1，所以是3</p>
+<p>无论怎么调用，最后调用foo的是obj1，所以是3。</p>
 <h4 id="1、隐式丢失"><a href="#1、隐式丢失" class="headerlink" title="1、隐式丢失"></a>1、隐式丢失</h4><p>this绑定的最常见问题就是隐式绑定的函数会丢失绑定对象，也就是会应用默认绑定，从而把this绑定在全局对象上（非严格模式）。</p>
 <h5 id="1、值传递"><a href="#1、值传递" class="headerlink" title="1、值传递"></a>1、值传递</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">unTypeFn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">1</span>,</div><div class="line">	<span class="attr">foo</span>:unTypeFn</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line"><span class="comment">//引用类型传递</span></div><div class="line">va c=obj.foo;</div><div class="line">c();<span class="comment">//2</span></div></pre></td></tr></table></figure>
 <p>obj.foo并没有直接调用，而是把它的引用地址传递给了c，所以c实际上引用的是unTypeFn函数本身，这里是默认绑定规则this指向全局。</p>
@@ -498,15 +560,20 @@
 <p>参数传递其实就是一种隐式赋值，不是直接调用obj.foo，而是把它当做值来传递。</p>
 <h5 id="3、回调函数"><a href="#3、回调函数" class="headerlink" title="3、回调函数"></a>3、回调函数</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">unTypeFn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">1</span>,</div><div class="line">	<span class="attr">foo</span>:unTypeFn</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line"><span class="comment">//回调函数的例子</span></div><div class="line">setTimeout(obj.foo,<span class="number">1000</span>);<span class="comment">//2</span></div><div class="line">d1.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//这里的this指d1Dom元素</span></div><div class="line">	obj.foo();</div><div class="line">&#125;,<span class="literal">false</span>);<span class="comment">//1</span></div><div class="line"><span class="comment">//绑定在DOM元素上了，相当于d1调用unTypeFn，所以undefined</span></div><div class="line">d1.addEventListener(<span class="string">"click"</span>,obj.foo,<span class="literal">false</span>);<span class="comment">//undefined</span></div></pre></td></tr></table></figure>
 <p>这两个都是回调函数的例子感觉跟上面的两个还是一回事，都不是立即调用，都是当做值来传递，这样会发生隐式邦定丢失。</p>
-<h3 id="三、显式绑定"><a href="#三、显式绑定" class="headerlink" title="三、显式绑定"></a>三、显式绑定</h3><p>在某个对象上直接强制调用函数，使用js内部的call和apply方法。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">typeFn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">1</span>,</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj1=&#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">2</span>,</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line">typeFn.call(obj);<span class="comment">//1</span></div><div class="line"><span class="comment">//这里可以改变this绑定的对象</span></div><div class="line">typeFn.call(obj1);<span class="comment">//2</span></div></pre></td></tr></table></figure></p>
+<h3 id="三、显式绑定（）"><a href="#三、显式绑定（）" class="headerlink" title="三、显式绑定（）"></a>三、显式绑定（）</h3><p>在某个对象上直接强制调用函数，使用js内部的call和apply方法。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">typeFn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">1</span>,</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj1=&#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">2</span>,</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a=<span class="number">2</span>;</div><div class="line">typeFn.call(obj);<span class="comment">//1</span></div><div class="line"><span class="comment">//这里可以改变this绑定的对象</span></div><div class="line">typeFn.call(obj1);<span class="comment">//2</span></div></pre></td></tr></table></figure></p>
 <p>call和apply功能是一样的，只是有参数的区别。<br>call和apply方法是<strong>立即执行</strong>的，那么在多次调用这个方法是就可能改变this绑定的对象，于是就出现了显示绑定的变种——硬绑定的方法。</p>
-<h4 id="1、硬绑定"><a href="#1、硬绑定" class="headerlink" title="1、硬绑定"></a>1、硬绑定</h4><figure class="highlight haxe"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">typeFn</span></span>()&#123;</div><div class="line">	console.log(<span class="built_in">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	a:<span class="type">1</span>,</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj1=&#123;</div><div class="line">	a:<span class="type">2</span>,</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> <span class="keyword">new</span><span class="type">1</span>=typeFn.bind(obj);</div><div class="line"><span class="keyword">new</span><span class="type">1</span>();<span class="comment">//1</span></div><div class="line"><span class="comment">//之后你就可以尽情的操作new1了，都不会改变typeFn绑定在obj上的事实</span></div><div class="line"><span class="keyword">new</span><span class="type">1</span>.bind(obj1);</div><div class="line"><span class="keyword">new</span><span class="type">1</span>();<span class="comment">//1</span></div><div class="line"><span class="keyword">new</span><span class="type">1</span>.call(obj1)<span class="comment">//1;</span></div></pre></td></tr></table></figure>
+<h4 id="1、硬绑定（使用函数的方法调用）"><a href="#1、硬绑定（使用函数的方法调用）" class="headerlink" title="1、硬绑定（使用函数的方法调用）"></a>1、硬绑定（使用函数的方法调用）</h4><figure class="highlight haxe"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">typeFn</span></span>()&#123;</div><div class="line">	console.log(<span class="built_in">this</span>.a);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	a:<span class="type">1</span>,</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj1=&#123;</div><div class="line">	a:<span class="type">2</span>,</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> <span class="keyword">new</span><span class="type">1</span>=typeFn.bind(obj);</div><div class="line"><span class="keyword">new</span><span class="type">1</span>();<span class="comment">//1</span></div><div class="line"><span class="comment">//之后你就可以尽情的操作new1了，都不会改变typeFn绑定在obj上的事实</span></div><div class="line"><span class="keyword">new</span><span class="type">1</span>.bind(obj1);</div><div class="line"><span class="keyword">new</span><span class="type">1</span>();<span class="comment">//1</span></div><div class="line"><span class="keyword">new</span><span class="type">1</span>.call(obj1)<span class="comment">//1;</span></div></pre></td></tr></table></figure>
 <p>ES5提供里内置的bind方法，返回一个新的绑定你指定this的函数，<strong>不会立即执行</strong>。new1.bind(obj).bind(obj1)是没啥用的他只会执行第一个。</p>
-<h3 id="四、new绑定"><a href="#四、new绑定" class="headerlink" title="四、new绑定"></a>四、new绑定</h3><p>也算是能够改变this的方式，使用new 来调用函数时，会构造一个新的对象并把它绑定到函数调用的this上，从而初始化这个新对象。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.a=a;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> bar=<span class="keyword">new</span> foo(<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(bar.a);</div></pre></td></tr></table></figure></p>
-<p>这里使用new 调用foo,会创建一个新对象bar，并把它绑定到foo调用时的this上。bar的</p>
+<h3 id="四、new绑定（构造函数new调用）"><a href="#四、new绑定（构造函数new调用）" class="headerlink" title="四、new绑定（构造函数new调用）"></a>四、new绑定（构造函数new调用）</h3><p>也算是能够改变this的方式，使用new 来调用函数时，会构造一个新的对象并把它绑定到函数调用的this上，从而初始化这个新对象。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.a=a;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> bar=<span class="keyword">new</span> foo(<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(bar.a);</div></pre></td></tr></table></figure></p>
+<p>这里使用new 调用foo,会创建一个新对象bar，并把它绑定到foo调用时的this上。</p>
 <h2 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.a=a</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	<span class="attr">foo</span>:foo</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj2=&#123;&#125;</div><div class="line"><span class="comment">//obj调用foo,foo的this隐式的绑定到obj上，从而能给obj添加a属性</span></div><div class="line">obj.foo(<span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(obj.a);<span class="comment">//2</span></div><div class="line"></div><div class="line"><span class="comment">//这里用显示绑定把foo的this绑定到obj2上(obj并没有变化)，说明显示绑定比隐式绑定的优先级要高（object.fn()&lt;fn.call(object)）</span></div><div class="line">obj.foo.call(obj2,<span class="number">3</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(obj.a);<span class="comment">//2</span></div><div class="line"><span class="built_in">console</span>.log(obj2.a);<span class="comment">//3</span></div><div class="line"></div><div class="line"><span class="comment">//这里使用new绑定，会把foo的this绑定到新创建的bar上，从而给bar添加属性。而obj没有变化说明new绑定比隐式绑定高（new fn()&gt;object.foo()）</span></div><div class="line"><span class="keyword">var</span> bar=<span class="keyword">new</span> obj.foo(<span class="number">4</span>);</div><div class="line"><span class="built_in">console</span>.log(obj.a);<span class="comment">//2</span></div><div class="line"><span class="built_in">console</span>.log(bar.a);<span class="comment">//4</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.a=a</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj1=&#123;&#125;</div><div class="line"><span class="comment">//这里使用bind的绑定吧foo的this绑定到obj1上</span></div><div class="line"><span class="keyword">var</span> bar =foo.bind(obj1);</div><div class="line">bar(<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(obj1.a);</div><div class="line"><span class="comment">//这里obj1没有改变说明new绑定优先级高于显示绑定,（new fn()&gt;fn.bind(object)）</span></div><div class="line"><span class="keyword">var</span> baz=<span class="keyword">new</span> bar(<span class="number">3</span>);</div><div class="line"><span class="built_in">console</span>.log(obj1.a);</div><div class="line"><span class="built_in">console</span>.log(baz.a);</div></pre></td></tr></table></figure>
 <p>new绑定&gt;显示绑定(apply,call,bind)&gt;隐式绑定（对象.）&gt;默认绑定（直接调用）</p>
+<h2 id="强化测试"><a href="#强化测试" class="headerlink" title="强化测试"></a>强化测试</h2><figure class="highlight actionscript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="number">10</span>;</div><div class="line"><span class="keyword">var</span> foo=&#123;</div><div class="line">  a:<span class="number">20</span>,</div><div class="line">  bar:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">      <span class="keyword">var</span> a=<span class="number">30</span>;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.a;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">foo.bar()</div><div class="line">(foo.bar)()</div><div class="line">(foo.bar=foo.bar)()</div><div class="line">(foo.bar,foo.bar)()</div></pre></td></tr></table></figure>
+<p>20,20,10,20</p>
+<p><code>foo.bar()</code>foo直接调用this指向foo。<br><code>(foo.bar)()</code>这里<code>(function(){})()</code>匿名函数直接调用，但是这里foo.bar已经不是匿名的啦，所以这里没啥卵用和上面是等价的。<br><code>(foo.bar=foo.bar)()</code>这里进行了赋值操作，隐式丢失所以是20。<br><code>(foo.bar,foo.bar)()</code>这里逗号完之后相当于<code>(foo.bar)()</code>。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">xx</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.x=xx;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> x=fn(<span class="number">5</span>);</div><div class="line"><span class="keyword">var</span> y=fn(<span class="number">6</span>);</div><div class="line"><span class="built_in">console</span>.log(x);</div><div class="line"><span class="built_in">console</span>.log(x.x);</div><div class="line"><span class="built_in">console</span>.log(y.x);</div></pre></td></tr></table></figure></p>
+<p>6,undefind,6</p>
+<p><code>var x=fn(5)</code>fn(5)直接调用this是window,window.x=5,然后x=window;现在的x就是window，且winow中x属性是5。<br><code>var y=fn(6)</code>y就是window，且window中的x属性变成了6，所以x就是6。<br>window.x和全局中的x是等价的。先执行函数绑定构造在赋值。</p>
 ]]></content>
       
         <categories>
@@ -691,6 +758,21 @@ console.log(d2.nextSibling);//文本
         <categories>
             
             <category> Jquery </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[ie9以上select样式重写]]></title>
+      <url>/2017/05/11/ie9%E4%BB%A5%E4%B8%8Aselect%E6%A0%B7%E5%BC%8F%E9%87%8D%E5%86%99/</url>
+      <content type="html"><![CDATA[<p>记录下重写select的css<a id="more"></a><br><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">select</span> &#123;</div><div class="line">  <span class="comment">/*统一边框*/</span></div><div class="line">  <span class="attribute">border</span>: solid <span class="number">1px</span> <span class="number">#000</span>;</div><div class="line">  <span class="comment">/*将默认的select选择框样式清除*/</span></div><div class="line">  <span class="attribute">appearance</span>:none;</div><div class="line">  <span class="attribute">-moz-appearance</span>:none;</div><div class="line">  <span class="attribute">-webkit-appearance</span>:none;</div><div class="line">  <span class="comment">/*替换选择框的最右侧显示小箭头图片*/</span></div><div class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">"http://****.png"</span>) no-repeat right center;</div><div class="line">  <span class="comment">/*为下拉小箭头留出一点位置，避免被文字覆盖*/</span></div><div class="line">  <span class="attribute">padding-right</span>: <span class="number">14px</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*清除ie的默认选择框样式清除，隐藏下拉箭头*/</span></div><div class="line"><span class="selector-tag">select</span><span class="selector-pseudo">::-ms-expand</span> &#123; <span class="attribute">display</span>: none; &#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> CSS </category>
             
         </categories>
         
