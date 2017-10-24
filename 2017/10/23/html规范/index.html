@@ -90,22 +90,17 @@
 
 
 
-<meta name="description" content="主要介绍了NodeList，以及扩展原型的方法">
+<meta name="description" content="对于html5新标签，属性的规范总结">
 <meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NodeList和slice">
-<meta property="og:url" content="https://github.com/blalablack/blog/2017/08/31/NodeList和slice/index.html">
+<meta property="og:title" content="html规范">
+<meta property="og:url" content="https://github.com/blalablack/blog/2017/10/23/html规范/index.html">
 <meta property="og:site_name" content="Lip's Blog">
-<meta property="og:description" content="主要介绍了NodeList，以及扩展原型的方法">
-<meta property="og:image" content="https://github.com/myimages/2017-08-31-NodeList和slice/p1.png">
-<meta property="og:image" content="https://github.com/myimages/2017-08-31-NodeList和slice/p3.png">
-<meta property="og:image" content="https://github.com/myimages/2017-08-31-NodeList和slice/p2.png">
-<meta property="og:image" content="https://github.com/myimages/2017-08-31-NodeList和slice/p4.png">
-<meta property="og:updated_time" content="2017-10-09T08:03:56.127Z">
+<meta property="og:description" content="对于html5新标签，属性的规范总结">
+<meta property="og:updated_time" content="2017-10-23T11:31:07.788Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NodeList和slice">
-<meta name="twitter:description" content="主要介绍了NodeList，以及扩展原型的方法">
-<meta name="twitter:image" content="https://github.com/myimages/2017-08-31-NodeList和slice/p1.png">
+<meta name="twitter:title" content="html规范">
+<meta name="twitter:description" content="对于html5新标签，属性的规范总结">
 
 
 
@@ -133,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/blalablack/blog/2017/08/31/NodeList和slice/"/>
+  <link rel="canonical" href="https://github.com/blalablack/blog/2017/10/23/html规范/"/>
 
 
 
 
 
-  <title>NodeList和slice | Lip's Blog</title>
+  <title>html规范 | Lip's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -302,7 +297,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/2017/08/31/NodeList和slice/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/2017/10/23/html规范/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lip">
@@ -323,7 +318,7 @@
             
             
               
-                NodeList和slice
+                html规范
               
             
           </h1>
@@ -338,8 +333,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T13:50:16+08:00">
-                2017-08-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T18:35:34+08:00">
+                2017-10-23
               </time>
             
 
@@ -348,28 +343,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -395,20 +368,38 @@
       
 
       
-        <p>主要介绍了NodeList，以及扩展原型的方法<a id="more"></a></p>
-<h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><p><code>NodeList</code>是一个类数组对象，由<code>Node.childNodes</code>和<code>document.qerySelectorAll</code>返回。</p>
-<h3 id="二、属性方法"><a href="#二、属性方法" class="headerlink" title="二、属性方法"></a>二、属性方法</h3><p>根据MDN文档，<code>NodeList</code>有<code>length</code>属性和<code>item</code>方法（返回NodeList对象中指定索引的节点，如果索引越界，则返回null。等价的写法是<code>nodeList[idx]</code>，不过这种情况下越界访问将返回undefined）。</p>
-<h3 id="三、描述"><a href="#三、描述" class="headerlink" title="三、描述"></a>三、描述</h3><p><strong>一个“有时实时”的集合</strong><br>大多数情况下，NodeList 对象都是个实时集合。意思是说，如果文档中的节点树发生变化，则已经存在的 NodeList 对象也可能会变化。例如，Node.childNodes 是实时的：<br><figure class="highlight qml"><table><tr><td class="code"><pre><div class="line"><span class="built_in">var</span> <span class="built_in">parent</span> = <span class="built_in">document</span>.getElementById(<span class="string">'parent'</span>);</div><div class="line"><span class="built_in">var</span> child_nodes = <span class="built_in">parent</span>.childNodes;</div><div class="line"><span class="built_in">console</span>.log(child_nodes.length); <span class="comment">// 如果假设结果是“2”</span></div><div class="line"><span class="built_in">parent</span>.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'div'</span>));</div><div class="line"><span class="built_in">console</span>.log(child_nodes.length); <span class="comment">// 此时的输出是“3”</span></div></pre></td></tr></table></figure></p>
-<p>在另一些情况下，NodeList 是一个静态集合，也就意味着随后对文档对象模型的任何改动都不会影响集合的内容。document.querySelectorAll 返回一个静态的 NodeList。</p>
-<p>特别是当你选择如何遍历 NodeList 中所有项，或缓存列表长度的时候，最好牢记这种区分。</p>
-<h3 id="四、不能使用数组的方法"><a href="#四、不能使用数组的方法" class="headerlink" title="四、不能使用数组的方法"></a>四、不能使用数组的方法</h3><h4 id="1、不同浏览器的支持不同"><a href="#1、不同浏览器的支持不同" class="headerlink" title="1、不同浏览器的支持不同"></a>1、不同浏览器的支持不同</h4><p>chrome:<br><img src="/myimages/2017-08-31-NodeList和slice/p1.png" alt="chrome中图片"><br>火狐：<br><img src="/myimages/2017-08-31-NodeList和slice/p3.png" alt="火狐中图片"><br>360：<br><img src="/myimages/2017-08-31-NodeList和slice/p2.png" alt="360中图片"><br>可以对比看出原型链一致 myNodeList –&gt; NodeList.prototype –&gt; Object.prototype,但是NodeList.prototype方法略有不同，高版本的浏览器多出了很多新的方法（forEach、keys）。</p>
-<h4 id="2、为啥不能使用数组方法"><a href="#2、为啥不能使用数组方法" class="headerlink" title="2、为啥不能使用数组方法"></a>2、为啥不能使用数组方法</h4><p><img src="/myimages/2017-08-31-NodeList和slice/p4.png" alt="数组继承"><br>可以看出数组的原型链 myArray –&gt; Array.prototype –&gt; Object.prototype，而且数组的map、forEach等方法放在Array.prototype上所以用不了。</p>
-<h4 id="3、解决方式"><a href="#3、解决方式" class="headerlink" title="3、解决方式"></a>3、解决方式</h4><h5 id="1、把-Array-prototype-上的方法添加到-NodeList-prototype-上"><a href="#1、把-Array-prototype-上的方法添加到-NodeList-prototype-上" class="headerlink" title="1、把 Array.prototype 上的方法添加到 NodeList.prototype 上"></a>1、把 Array.prototype 上的方法添加到 NodeList.prototype 上</h5><figure class="highlight monkey"><table><tr><td class="code"><pre><div class="line">//获取数组原型方法(方法都是不可枚举的)</div><div class="line">var arrayMethods=Object.getOwnPropertyNames(Array.prototype);</div><div class="line">arrayMethods.forEach(<span class="function"><span class="keyword">function</span>(</span><span class="function"><span class="keyword">method</span>)&#123;</span></div><div class="line">  //过滤length</div><div class="line">  <span class="keyword">if</span>(<span class="function"><span class="keyword">method</span>!=</span>=<span class="string">"length"</span>)&#123;</div><div class="line">    NodeList.prototype[<span class="function"><span class="keyword">method</span>]=</span>Array.prototype[<span class="function"><span class="keyword">method</span>];			</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>上面的方法扩展了NodeList原型，添加了Array.prototype的方法。</p>
-<h5 id="2、将NodeList作为this传递给数组方法。"><a href="#2、将NodeList作为this传递给数组方法。" class="headerlink" title="2、将NodeList作为this传递给数组方法。"></a>2、将NodeList作为this传递给数组方法。</h5><figure class="highlight php"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> divs = document.querySelectorAll(<span class="string">"div"</span>);</div><div class="line"><span class="keyword">var</span> <span class="keyword">forEach</span>=<span class="keyword">Array</span>.prototype.<span class="keyword">forEach</span>;</div><div class="line"><span class="keyword">forEach</span>.call(divs,<span class="function"><span class="keyword">function</span><span class="params">(div)</span></span>&#123;</div><div class="line">  <span class="comment">//这里就会得到Dom元素</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>通过这样的方式可以实现NodeList调用forEach等方法<br>注：<code>Object.getOwnPropertyNames(obj)</code>返回所有自身属性的属性名(包括不可枚举属性)组成的数组。</p>
-<h4 id="4、将NodeList转换为数组"><a href="#4、将NodeList转换为数组" class="headerlink" title="4、将NodeList转换为数组"></a>4、将NodeList转换为数组</h4><figure class="highlight dart"><table><tr><td class="code"><pre><div class="line">div_list = <span class="built_in">document</span>.<span class="built_in">querySelectorAll</span>(<span class="string">'div'</span>); <span class="comment">// 返回 NodeList</span></div><div class="line"><span class="keyword">var</span> div_array = Array.prototype.slice.call(div_list); <span class="comment">// 将 NodeList 转换为数组</span></div><div class="line"><span class="keyword">var</span> div_array=[].slice.call(div_list)<span class="comment">//简写</span></div></pre></td></tr></table></figure>
-<p>slice() 方法返回一个从开始到结束（不包括结束）选择的数组的一部分浅拷贝（引用类型共用）到一个新数组对象。原始数组不会被修改。接受两个参数，省略哪一个到哪一端极限（都省略返回完整新数组）。</p>
+        <p>对于html5新标签，属性的规范总结<a id="more"></a></p>
+<h3 id="标签语义化"><a href="#标签语义化" class="headerlink" title="标签语义化"></a>标签语义化</h3><p>标签语义化就是让每一个标签出现在符合它意义的地方。<br>优点：</p>
+<ul>
+<li>1、条理清晰，利于阅读维护，提高团队开发效率。</li>
+<li>2、利于网站seo。</li>
+<li>3、对于阅读障碍者更加友好。</li>
+<li>4、在页面丢失样式时，保持一定的页面结构。</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--网站头部--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--包裹标题--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">bgroup</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>这是主标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">h2</span>&gt;</span>这是副标题<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">bgroup</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">section</span>&gt;</span>这是header中的内容<span class="tag">&lt;/<span class="name">section</span>&gt;</span>	</div><div class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--这是导航栏--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">nav</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>HTML 5<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>css3<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--网页主体--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">main</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">header</span>&gt;</span>语义标签的使用<span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">section</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一段小内容<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">section</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">table</span>&gt;</span></div><div class="line">     	<span class="tag">&lt;<span class="name">caption</span>&gt;</span>title<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></div><div class="line">     	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>name<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>age<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">     	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">     	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>lee<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>24<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">     	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">main</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--独立于文档的其他部分，特殊的--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">article</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span>这是评论<span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">section</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">article</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--侧边栏，absolute的--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">aside</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>作为页面或站点全局的附属信息部分。最典型的是<span class="tag">&lt;<span class="name">strong</span>&gt;</span>侧边栏<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>，其中的内容可以是日志串连，其他组的导航，甚至广告，这些内容相关的页面。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">aside</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--页脚部分--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>页脚部分<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>以上包括了基本的标签(还是要经常查表)，以后的要严格要求自己让标签语义化成为一种习惯。</p>
+<h3 id="脚本加载"><a href="#脚本加载" class="headerlink" title="脚本加载"></a>脚本加载</h3><p>html5新属性async<br><code>&lt;script src=&quot;demo_async.js&quot; async&gt;&lt;/script&gt;</code>用来加载外部脚本，脚本可用立即异步加载(不会阻塞页面)。<br>那么对于支持<code>async</code>的现代浏览器就可以放在head中，更具有条理性<br><figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"main.css"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span> <span class="attr">async</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>所有浏览器，建议是放在body的下部。<br><figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"main.css"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span> <span class="attr">async</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="HTML只关注内容"><a href="#HTML只关注内容" class="headerlink" title="HTML只关注内容"></a>HTML只关注内容</h3><ul>
+<li>除非img是页面内容，对于那些用来修饰样式的,一律用background解决</li>
+<li>不要引入一些特定的 HTML 结构来解决一些视觉设计问题</li>
+</ul>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><div class="line">&lt;p&gt;</div><div class="line">  &lt;span class=<span class="string">"square"</span>&gt;&lt;/span&gt;</div><div class="line">  See the square next to me?</div><div class="line">&lt;/p&gt;</div><div class="line"></div><div class="line"></div><div class="line">p&gt; .square &#123;</div><div class="line">  <span class="built_in">display</span>: inline-<span class="built_in">block</span>;</div><div class="line">  <span class="built_in">width</span>: 1<span class="built_in">rem</span>;</div><div class="line">  <span class="built_in">height</span>: 1<span class="built_in">rem</span>;</div><div class="line">  <span class="built_in">background</span>-<span class="built_in">color</span>: red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于这种，完全可以用伪类实现<br><figure class="highlight maxima"><table><tr><td class="code"><pre><div class="line">&lt;p&gt;</div><div class="line">  See the square next to me?</div><div class="line">&lt;/p&gt;</div><div class="line"></div><div class="line"></div><div class="line">p:before &#123;</div><div class="line">  <span class="built_in">content</span>: <span class="string">""</span>;</div><div class="line">  <span class="built_in">display</span>: inline-<span class="built_in">block</span>;</div><div class="line">  <span class="built_in">width</span>: 1<span class="built_in">rem</span>;</div><div class="line">  <span class="built_in">height</span>: 1<span class="built_in">rem</span>;</div><div class="line">  <span class="built_in">background</span>-<span class="built_in">color</span>: red;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="结构、表现、行为三者分离"><a href="#结构、表现、行为三者分离" class="headerlink" title="结构、表现、行为三者分离"></a>结构、表现、行为三者分离</h3><p>尽量在文档和模板中只包含结构性的 HTML；</p>
+<ul>
+<li>1、而将所有表现代码，移入样式表中；</li>
+<li>2、将所有动作行为，移入脚本之中。</li>
+<li>3、在文档和模板中也尽量少地引入样式和脚本文件。</li>
+</ul>
+<h3 id="alt标签不为空"><a href="#alt标签不为空" class="headerlink" title="alt标签不为空"></a>alt标签不为空</h3><p><code>img</code>标签的 alt 属性指定了替代文本，用于在图像无法显示或者用户禁用图像显示时，代替图像显示在浏览器中的内容。<br>假设由于下列原因用户无法查看图像，alt 属性可以为图像提供替代的信息：</p>
+<ul>
+<li>网速太慢</li>
+<li>src 属性中的错误</li>
+<li>浏览器禁用图像</li>
+<li>用户使用的是屏幕阅读器</li>
+</ul>
+<p>从SEO角度考虑，浏览器的爬虫爬不到图片的内容，所以我们要有文字告诉爬虫图片的内容。</p>
 
       
     </div>
@@ -445,18 +436,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/31/Json-Object/" rel="next" title="Json&Object">
-                <i class="fa fa-chevron-left"></i> Json&Object
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/29/事件/" rel="prev" title="事件">
-                事件 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/11/css-hover实现子元素变化/" rel="prev" title="css hover实现子元素变化">
+                css hover实现子元素变化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -597,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-number">1.</span> <span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、属性方法"><span class="nav-number">2.</span> <span class="nav-text">二、属性方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、描述"><span class="nav-number">3.</span> <span class="nav-text">三、描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、不能使用数组的方法"><span class="nav-number">4.</span> <span class="nav-text">四、不能使用数组的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、不同浏览器的支持不同"><span class="nav-number">4.1.</span> <span class="nav-text">1、不同浏览器的支持不同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、为啥不能使用数组方法"><span class="nav-number">4.2.</span> <span class="nav-text">2、为啥不能使用数组方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、解决方式"><span class="nav-number">4.3.</span> <span class="nav-text">3、解决方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、把-Array-prototype-上的方法添加到-NodeList-prototype-上"><span class="nav-number">4.3.1.</span> <span class="nav-text">1、把 Array.prototype 上的方法添加到 NodeList.prototype 上</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、将NodeList作为this传递给数组方法。"><span class="nav-number">4.3.2.</span> <span class="nav-text">2、将NodeList作为this传递给数组方法。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、将NodeList转换为数组"><span class="nav-number">4.4.</span> <span class="nav-text">4、将NodeList转换为数组</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签语义化"><span class="nav-number">1.</span> <span class="nav-text">标签语义化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本加载"><span class="nav-number">2.</span> <span class="nav-text">脚本加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML只关注内容"><span class="nav-number">3.</span> <span class="nav-text">HTML只关注内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构、表现、行为三者分离"><span class="nav-number">4.</span> <span class="nav-text">结构、表现、行为三者分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#alt标签不为空"><span class="nav-number">5.</span> <span class="nav-text">alt标签不为空</span></a></li></ol></div>
             
 
           </div>
