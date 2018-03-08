@@ -1,0 +1,995 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="HTML5提供了两种客户端存储数据的新方法:1、localStorage-没有时间限制的数据存储2、sessionStorage-针对一个session（一个标签页）的数据存储。这篇文章主要介绍这两个新方法和对比俩个方法的不同，和一些实际的应用">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web存储机制">
+<meta property="og:url" content="https://github.com/blalablack/blog/2017/07/13/web存储机制/index.html">
+<meta property="og:site_name" content="Lip的个人博客">
+<meta property="og:description" content="HTML5提供了两种客户端存储数据的新方法:1、localStorage-没有时间限制的数据存储2、sessionStorage-针对一个session（一个标签页）的数据存储。这篇文章主要介绍这两个新方法和对比俩个方法的不同，和一些实际的应用">
+<meta property="og:updated_time" content="2017-09-07T05:34:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web存储机制">
+<meta name="twitter:description" content="HTML5提供了两种客户端存储数据的新方法:1、localStorage-没有时间限制的数据存储2、sessionStorage-针对一个session（一个标签页）的数据存储。这篇文章主要介绍这两个新方法和对比俩个方法的不同，和一些实际的应用">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/blalablack/blog/2017/07/13/web存储机制/"/>
+
+
+
+
+
+  <title>web存储机制 | Lip的个人博客</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lip的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            全部
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text"></i> <br />
+            
+            简介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="https://blalablack.github.io/worksTitle/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil-square"></i> <br />
+            
+            积累
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/blog/2017/07/13/web存储机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lip的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                web存储机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-13T20:37:13+08:00">
+                2017-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>HTML5提供了两种客户端存储数据的新方法:<br>1、localStorage-没有时间限制的数据存储<br>2、sessionStorage-针对一个session（一个标签页）的数据存储。<br>这篇文章主要介绍这两个新方法和对比俩个方法的不同，和一些实际的应用<a id="more"></a></p>
+<h2 id="一、localStorage"><a href="#一、localStorage" class="headerlink" title="一、localStorage"></a>一、localStorage</h2><h3 id="1、说明"><a href="#1、说明" class="headerlink" title="1、说明"></a>1、说明</h3><p>localStorage即本地储存，可以长久保存整个网站的数据，保存的数据没有过期时间，直到手动清除。</p>
+<h3 id="2、特点"><a href="#2、特点" class="headerlink" title="2、特点"></a>2、特点</h3><p>（1）同源策略限制。在同一协议、同一主机名和同一端口下的所有页面都可以访问通过localStorage存储的数据。<br>（2）在本地浏览器储存，不会涉及到服务器。<br>（3）永久保存。数据没有过期时间，直到手动清除（浏览器清缓存也不行）。<br>（4）储存方式。采用key,value的方式，而且value的值必学是string类型（传入其他类型会转化为string类型）。<br>（5）不同浏览器不能相互访问。</p>
+<h3 id="3、使用场景"><a href="#3、使用场景" class="headerlink" title="3、使用场景"></a>3、使用场景</h3><p>1、多页面访问相同数据。2、数据较大时的临时储存。</p>
+<h2 id="二、sessionStorage"><a href="#二、sessionStorage" class="headerlink" title="二、sessionStorage"></a>二、sessionStorage</h2><h3 id="1、说明-1"><a href="#1、说明-1" class="headerlink" title="1、说明"></a>1、说明</h3><p>sessionStorage用于保存一个窗口或标签页的数据，关闭之后数据会被清除。</p>
+<h3 id="2、特点-1"><a href="#2、特点-1" class="headerlink" title="2、特点"></a>2、特点</h3><p>（1）单标签页限制。sessionStorage操作限制在单标签页(仅指顶层标签页)中，不在一个标签页中无法访问数据，这也是它和localStorage的区别之一。<br>（2）在本地浏览器储存，不会涉及到服务器。<br>（3）储存方式。采用key,value的方式，而且value的值必学是string类型（传入其他类型会转化为string类型）。<br>（4）关闭窗口或标签页数据清空。<br>（5）同一顶级标签页下的不同页面（只要不是通过下面方法打开的）在打开是可以访问顶级标签页的数据，但也就是这是能联系，之后他们之间不会有任何关联。<br>（6）不同浏览器不能相互访问。</p>
+<h3 id="3、使用场景-1"><a href="#3、使用场景-1" class="headerlink" title="3、使用场景"></a>3、使用场景</h3><p>sessionStorage就是用在单页面应用中使用。</p>
+<h4 id="单标签页解释。"><a href="#单标签页解释。" class="headerlink" title="单标签页解释。"></a>单标签页解释。</h4><p>这里的标签页是指顶层标签页，即从顶层通过链接打开的新页面（新页面下面的页面）都算是这个标签页中的。<br>浏览器新标签（顶层）的打开方式：<br>  1、输入网址打开。<br>  2、右键打开新标签页。<br>  3、f12 open in new tab。<br>这些都算是打开一个新的顶层标签页，这些新的标签页通过sessionStorage储存的数据不共享。这种单标签页限制区别于localStorage。  </p>
+<h2 id="三、storage事件"><a href="#三、storage事件" class="headerlink" title="三、storage事件"></a>三、storage事件</h2><h3 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h3><p>无论是对sessionStorage还是localStorage进行操作，只要是对storage对象进行任何修改都会触发storage事件。</p>
+<h3 id="2、限制"><a href="#2、限制" class="headerlink" title="2、限制"></a>2、限制</h3><p>1、目前chrome并不支持在当前页触发，只能检测同源页面，单页面应用就gg了。<br>2、目前chrome重复载入相同数据也不触发，监听事件时要小心，不要怀疑世界了。<br>例如：我现在有同源的A和B两个页面，使用chrome改变A的localStorage，B页面会触发onstorage事件，但是A页面并不会触发。在A页面设置<code>localStorage.timeCout=5</code>，再次<code>localStorage.timeCout=5</code>,B页面不会触发。</p>
+<h3 id="2、改进方法"><a href="#2、改进方法" class="headerlink" title="2、改进方法"></a>2、改进方法</h3><h4 id="1、重写setItem方法。"><a href="#1、重写setItem方法。" class="headerlink" title="1、重写setItem方法。"></a>1、重写setItem方法。</h4><p>localStorage.setItem(“name”,”Li”);这样和localStorage.name（对象点方法）相同的，所以我们就可以重写一下setItem方法，在页面调用setItem时就可以在本页面检测到这个事件啦。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在替换之前记录一下,给下面使用</span></div><div class="line"><span class="keyword">var</span> SetItem=localStorage.setItem;</div><div class="line">localStorage.setItem=<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</div><div class="line">	<span class="comment">//创建事件对象</span></div><div class="line">	<span class="keyword">var</span> setItemEvent=<span class="keyword">new</span> Event(<span class="string">"setItemEvent"</span>);</div><div class="line">	setItemEvent.value=value;</div><div class="line">	setItemEvent.key=key;</div><div class="line">	<span class="comment">//手动触发setItemEvent事件</span></div><div class="line">	<span class="built_in">window</span>.dispatchEvent(setItemEvent);</div><div class="line">	<span class="comment">//执行原方法，是还没重写之前的，这里的this指Storage。</span></div><div class="line">	SetItem.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"setItemEvent"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">	<span class="keyword">if</span>(e.key=<span class="string">"xx"</span>)&#123;</div><div class="line">		<span class="built_in">console</span>.log(e.value);</div><div class="line">	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>注：方法里的SetItem.apply(this,arguments)把SetItem方法绑定到Storage对象上，这样才能执行，要是SetItem()报Uncaught TypeError: Illegal invocation这个错。SetItem()相当于把这个Storage对象的setItem方法绑定到window上执行，是不行的。举个例子:<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> d=<span class="built_in">document</span>.getElementById;</div><div class="line"><span class="keyword">var</span> c=d(<span class="string">"d1"</span>);</div><div class="line"><span class="comment">//报错：Uncaught TypeError: Illegal invocation。未捕获的类型错误：非法调用</span></div></pre></td></tr></table></figure></p>
+<p>其实就是这样<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> d=<span class="built_in">document</span>.getElementById;</div><div class="line"><span class="keyword">var</span> c=d.call(<span class="built_in">window</span>,<span class="string">"d1"</span>);</div></pre></td></tr></table></figure></p>
+<p>d1的DOM元素应该在document对象中，你非得给人绑定到window对象中肯定是不合适的。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> d=<span class="built_in">document</span>.getElementById;</div><div class="line"><span class="keyword">var</span> c=d.call(<span class="built_in">document</span>,<span class="string">"d1"</span>);</div></pre></td></tr></table></figure></p>
+<p>这样你在试试</p>
+<h4 id="2、添加数据变的作为事件监听"><a href="#2、添加数据变的作为事件监听" class="headerlink" title="2、添加数据变的作为事件监听"></a>2、添加数据变的作为事件监听</h4><p>例如：你想获取每次count的值，但是这个count的变化又是没有规律的（有时变有时不变），对于chrome来说重复载入相同数据不会触发事件，就会很尴尬。那么你就可以在每次改变count之后再添加一个每次都变好的change数据，这样你就可以通过监听change来获取每次count的值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	localStorage.count=<span class="number">3</span>；</div><div class="line">	localStorage.change=+<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">&#125;</div><div class="line"><span class="comment">/*监听事件*/</span></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"storage"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(e.key==<span class="string">"change"</span>)&#123;</div><div class="line">           <span class="keyword">var</span> count=localStorage.count;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="四、localstorage应用实例"><a href="#四、localstorage应用实例" class="headerlink" title="四、localstorage应用实例"></a>四、localstorage应用实例</h2><h3 id="1、概述-1"><a href="#1、概述-1" class="headerlink" title="1、概述"></a>1、概述</h3><p>这段事件在做一个在线教育项目，有一个检测学生在线是否偷懒的功能。因为网站和后台的交互比较多所以就记录用户最新发送ajax请求的时间，再用计时器不断轮询这个时间看是否大于规定时间来判断孩子是否偷懒。</p>
+<h3 id="2、难点"><a href="#2、难点" class="headerlink" title="2、难点"></a>2、难点</h3><p>1、要是这个时间记录在后台那么我们就要不断到后台请求这个时间这肯定是不合理的。<br>2、要在浏览器端实现多页面间的数据共享。<br>3、实现多个页面之间的计时器同步（假如两个页面的计时器差3s,那么这两个页面检测偷懒提示就会差3s）。<br>4、一个页面的提示关闭，所有页面的提示都要关闭。</p>
+<h3 id="3、解决方法"><a href="#3、解决方法" class="headerlink" title="3、解决方法"></a>3、解决方法</h3><p>1、使用localStorage实现浏览器端的数据存储，减少服务器压力。<br>2、localStorage实现数据共享。<br>3、用storage事件检测不同页面间的localStorage数据变化，实现不同页面间的计时器同步<br>4、重写localStorage.setItem方法，实现单页面检测localStorage数据变化，实现计时器同步。<br>5、利用Storage间接监听提示关闭事件。</p>
+<h3 id="4、代码"><a href="#4、代码" class="headerlink" title="4、代码"></a>4、代码</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">on</span> <span class="keyword">the</span> way</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/07/16/探究this/" rel="next" title="探究this">
+                <i class="fa fa-chevron-left"></i> 探究this
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2017/07/12/函数节流/" rel="prev" title="函数节流">
+                函数节流 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/touxiang.jpg"
+               alt="Lip" />
+          <p class="site-author-name" itemprop="name">Lip</p>
+           
+              <p class="site-description motion-element" itemprop="description">未知的命运，已知的抉择</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/blalablack" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、localStorage"><span class="nav-number">1.</span> <span class="nav-text">一、localStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、说明"><span class="nav-number">1.1.</span> <span class="nav-text">1、说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、特点"><span class="nav-number">1.2.</span> <span class="nav-text">2、特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、使用场景"><span class="nav-number">1.3.</span> <span class="nav-text">3、使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、sessionStorage"><span class="nav-number">2.</span> <span class="nav-text">二、sessionStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、说明-1"><span class="nav-number">2.1.</span> <span class="nav-text">1、说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、特点-1"><span class="nav-number">2.2.</span> <span class="nav-text">2、特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、使用场景-1"><span class="nav-number">2.3.</span> <span class="nav-text">3、使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单标签页解释。"><span class="nav-number">2.3.1.</span> <span class="nav-text">单标签页解释。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、storage事件"><span class="nav-number">3.</span> <span class="nav-text">三、storage事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述"><span class="nav-number">3.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、限制"><span class="nav-number">3.2.</span> <span class="nav-text">2、限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、改进方法"><span class="nav-number">3.3.</span> <span class="nav-text">2、改进方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、重写setItem方法。"><span class="nav-number">3.3.1.</span> <span class="nav-text">1、重写setItem方法。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、添加数据变的作为事件监听"><span class="nav-number">3.3.2.</span> <span class="nav-text">2、添加数据变的作为事件监听</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、localstorage应用实例"><span class="nav-number">4.</span> <span class="nav-text">四、localstorage应用实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、概述-1"><span class="nav-number">4.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、难点"><span class="nav-number">4.2.</span> <span class="nav-text">2、难点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、解决方法"><span class="nav-number">4.3.</span> <span class="nav-text">3、解决方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、代码"><span class="nav-number">4.4.</span> <span class="nav-text">4、代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lip</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      $('#local-search-input').focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            var resultItems = [];
+            if (this.value.trim().length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCountInArticle = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCountInArticle = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  var resultItem = '';
+
+                  function highlightKeyword(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+
+                    var matchText = text.substring(start, end);
+                    var matchResult = [];
+                    var prevEnd = 0;
+                    while (position + word.length <= end && index.length != 0) {
+
+                      // highlight keyword
+
+                      var wordBegin = position - start;
+                      var wordEnd = position - start + word.length;
+                      matchResult.push(matchText.substring(prevEnd, wordBegin));
+                      matchResult.push("<b class=\"search-keyword\">" + matchText.substring(wordBegin, wordEnd) + "</b>");
+
+                      // move to next position of hit
+
+                      index.pop();
+                      prevEnd = wordEnd;
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (prevEnd > position - start) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    matchResult.push(matchText.substring(prevEnd));
+                    return matchResult.join('');
+                  }
+
+                  // sort index by position of keyword
+
+                  indexOfTitle.sort(function (itemLeft, itemRight) {
+                    return itemRight.position - itemLeft.position;
+                  });
+
+                  indexOfContent.sort(function (itemLeft, itemRight) {
+                    return itemRight.position - itemLeft.position;
+                  });
+
+                  // highlight title
+
+                  if (indexOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, 0, title.length, indexOfTitle) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  // highlight content
+
+                  var resultUpperBound = parseInt(1);
+                  var withoutUpperBound = false;
+                  if (resultUpperBound === -1) {
+                    withoutUpperBound = true;
+                  }
+                  var currentResultNum = 0;
+                  while (indexOfContent.length != 0 && (withoutUpperBound || (currentResultNum < resultUpperBound))) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                    "<p class=\"search-result\">" + highlightKeyword(content, start, end, indexOfContent) +
+                    "...</p>" + "</a>";
+                    currentResultNum++;
+                  }
+                  resultItem += "</li>";
+                  resultItems.push({item: resultItem, hitCount: hitCountInArticle, id: resultItems.length});
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.hitCount != resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultLeft.id - resultRight.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result, i) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              $resultContent.innerHTML = searchResultList;
+            }
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

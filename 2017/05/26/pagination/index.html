@@ -1,0 +1,1004 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Pagination是JQuery一款十分经典的分页插件，我在之前的基础上做了一点很小的改动：1、增加了页码输入跳转的功能，可以自己决定是否出现此功能。2、增加一个点击事件函数，返回点击的页码，可以实现ajax分次请求">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pagination分页增加页面跳转功能">
+<meta property="og:url" content="https://github.com/blalablack/blog/2017/05/26/pagination/index.html">
+<meta property="og:site_name" content="Lip的个人博客">
+<meta property="og:description" content="Pagination是JQuery一款十分经典的分页插件，我在之前的基础上做了一点很小的改动：1、增加了页码输入跳转的功能，可以自己决定是否出现此功能。2、增加一个点击事件函数，返回点击的页码，可以实现ajax分次请求">
+<meta property="og:image" content="https://github.com/blog/myimages/pagination/p1.png">
+<meta property="og:image" content="https://github.com/blog/myimages/pagination/p2.png">
+<meta property="og:image" content="https://github.com/blog/myimages/pagination/p3.png">
+<meta property="og:updated_time" content="2017-09-07T05:28:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pagination分页增加页面跳转功能">
+<meta name="twitter:description" content="Pagination是JQuery一款十分经典的分页插件，我在之前的基础上做了一点很小的改动：1、增加了页码输入跳转的功能，可以自己决定是否出现此功能。2、增加一个点击事件函数，返回点击的页码，可以实现ajax分次请求">
+<meta name="twitter:image" content="https://github.com/blog/myimages/pagination/p1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/blalablack/blog/2017/05/26/pagination/"/>
+
+
+
+
+
+  <title>Pagination分页增加页面跳转功能 | Lip的个人博客</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lip的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            全部
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text"></i> <br />
+            
+            简介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-works">
+          <a href="https://blalablack.github.io/worksTitle/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil-square"></i> <br />
+            
+            积累
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://github.com/blalablack/blog/blog/2017/05/26/pagination/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lip的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Pagination分页增加页面跳转功能
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-26T14:15:32+08:00">
+                2017-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Jquery/" itemprop="url" rel="index">
+                    <span itemprop="name">Jquery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Pagination是JQuery一款十分经典的分页插件，我在之前的基础上做了一点很小的改动：1、增加了页码输入跳转的功能，可以自己决定是否出现此功能。2、增加一个点击事件函数，返回点击的页码，可以实现ajax分次请求<a id="more"></a>  </p>
+<p><a href="http://oljtqy7i8.bkt.clouddn.com/pagination.zip" title="js和css源码" target="_blank" rel="external">Pagination源码下载</a></p>
+<h2 id="一、pagination使用方法"><a href="#一、pagination使用方法" class="headerlink" title="一、pagination使用方法"></a>一、pagination使用方法</h2><h3 id="1、使用方法"><a href="#1、使用方法" class="headerlink" title="1、使用方法"></a>1、使用方法</h3><p>跟一般的jQuery插件一样，此插件需要引入jq,使用也很简单便捷。方法是pagination，例如<code>$(&quot;#page&quot;).pagination(100);</code>，这里的100参数是必须的，表示显示项目的总个数，这是最简单的使用，得到的显示如下：<br><img src="/blog/myimages/pagination/p1.png" alt="展示效果"></p>
+<h3 id="2、参数详解"><a href="#2、参数详解" class="headerlink" title="2、参数详解"></a>2、参数详解</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">这是参数的默认值，可以自行修改</div><div class="line">&#123;</div><div class="line"><span class="symbol">    items_per_page:</span><span class="number">10</span>,<span class="comment">//每页数目</span></div><div class="line"><span class="symbol">    num_display_entries:</span><span class="number">10</span>,<span class="comment">//中间数目</span></div><div class="line"><span class="symbol">    current_page:</span><span class="number">0</span>,<span class="comment">//当前页数</span></div><div class="line"><span class="symbol">    num_edge_entries:</span><span class="number">0</span>,<span class="comment">//边缘数目</span></div><div class="line"><span class="symbol">    link_to:</span><span class="string">"#"</span>,</div><div class="line"><span class="symbol">    prev_text:</span><span class="string">"Prev"</span>,</div><div class="line"><span class="symbol">    next_text:</span><span class="string">"Next"</span>,</div><div class="line"><span class="symbol">    ellipse_text:</span><span class="string">"..."</span>,<span class="comment">//中间多想代替文字</span></div><div class="line"><span class="symbol">    prev_show_always:</span>true,<span class="comment">//上一页是否展示</span></div><div class="line"><span class="symbol">    next_show_always:</span>true,<span class="comment">//下一个页是否展示</span></div><div class="line"><span class="symbol">    ifGo:</span>false,<span class="comment">//决定是否出现跳转功能</span></div><div class="line"><span class="symbol">    ifGo_text:</span><span class="string">"Go"</span>,<span class="comment">//跳转到文字</span></div><div class="line"><span class="symbol">    a_fn:</span>function()&#123;return false;&#125;,<span class="comment">//每次单击的触发的事件（返回页码，可以ajax请求）</span></div><div class="line"><span class="symbol">    callback:</span>function()&#123;return false;&#125;<span class="comment">//每次单击的回调函数</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3、使用举例"><a href="#3、使用举例" class="headerlink" title="3、使用举例"></a>3、使用举例</h3><h4 id="1、原版"><a href="#1、原版" class="headerlink" title="1、原版"></a>1、原版</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"page"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"pagination"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">$(<span class="string">"#Pagination"</span>).pagination(<span class="number">56</span>, &#123;</div><div class="line">    <span class="attr">num_edge_entries</span>: <span class="number">2</span>,</div><div class="line">    <span class="attr">num_display_entries</span>: <span class="number">4</span>,</div><div class="line">    <span class="attr">callback</span>: pageselectCallback,</div><div class="line">    <span class="attr">items_per_page</span>:<span class="number">1</span>，</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>效果：<br><img src="/blog/myimages/pagination/p2.png" alt="展示效果"><br>这段代码表示的含义是：总共有56(maxentries)个列表项，首尾两侧分页显示2(num_edge_entries)个，连续分页主体数目显示4(num_display_entries)个，回调函数为pageselectCallback(callback)，每页显示的列表项为1(items_per_page)。您可以对照参数表修改配置这里的参数。</p>
+<h4 id="2、页码输入跳转版"><a href="#2、页码输入跳转版" class="headerlink" title="2、页码输入跳转版"></a>2、页码输入跳转版</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="params">&lt;div id="page" class="pagination"&gt;</span><span class="params">&lt;/div&gt;</span></div><div class="line">$(<span class="string">"#Pagination"</span>).pagination(<span class="number">56</span>, &#123;</div><div class="line"><span class="symbol">    num_edge_entries:</span> <span class="number">2</span>,</div><div class="line"><span class="symbol">    num_display_entries:</span> <span class="number">4</span>,</div><div class="line"><span class="symbol">    callback:</span> pageselectCallback,</div><div class="line"><span class="symbol">    items_per_page:</span><span class="number">1</span>，</div><div class="line"><span class="symbol">    ifGo:</span><span class="number">10</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>效果：<br><img src="/blog/myimages/pagination/p3.png" alt="展示效果"><br>这段代码相对于上面多了一个ifGo：10，含义是只要分页超过10页就会出现输入跳转功能，可以点击Go和键盘enter跳转，默认是不显示。</p>
+<h4 id="3、实现ajax分页请求"><a href="#3、实现ajax分页请求" class="headerlink" title="3、实现ajax分页请求"></a>3、实现ajax分页请求</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"page"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"pagination"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">$(<span class="string">"#Pagination"</span>).pagination(<span class="number">56</span>, &#123;</div><div class="line">    <span class="attr">num_edge_entries</span>: <span class="number">2</span>,</div><div class="line">    <span class="attr">num_display_entries</span>: <span class="number">4</span>,</div><div class="line">    <span class="attr">a_fn</span>: getpage,</div><div class="line">    <span class="attr">callback</span>: pageselectCallback,</div><div class="line">    <span class="attr">items_per_page</span>:<span class="number">1</span>，</div><div class="line">    ifGo:<span class="number">10</span></div><div class="line">&#125;);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getpage</span>(<span class="params">page_index</span>)</span>&#123;</div><div class="line">    <span class="comment">//这里可以发送ajax请求，请求点击页的数据</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意点：这里a_fn不能和获取56的函数共用一个，函数内容相同的情况也不能（要重写一个不包括pagination初始化的）。如果共用一个就会每次分页切换时都要重新加载一遍pagination造成浪费。当然新加一个全局变量保证在切换页码时不再加载pagination限制一下也是可以的。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">if</span>First=<span class="literal">true</span>;</div><div class="line"><span class="keyword">if</span>(<span class="keyword">if</span>First)&#123;</div><div class="line">    $(<span class="string">"#Pagination"</span>.pagination(56));</div><div class="line">    <span class="keyword">if</span>First=<span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="二、paginationJS跳转功能实现"><a href="#二、paginationJS跳转功能实现" class="headerlink" title="二、paginationJS跳转功能实现"></a>二、paginationJS跳转功能实现</h2><h3 id="1、获取用户输入数字方法"><a href="#1、获取用户输入数字方法" class="headerlink" title="1、获取用户输入数字方法"></a>1、获取用户输入数字方法</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function goNum()&#123;</div><div class="line">            <span class="keyword">var</span> np = numPages();</div><div class="line">            <span class="keyword">var</span> <span class="built_in">num</span>=Number(jQuery(<span class="string">".input_num"</span>).val());</div><div class="line">            <span class="comment">//判断用户输入有效值，并且不是当前页</span></div><div class="line">            <span class="keyword">if</span>(<span class="built_in">num</span>&amp;&amp;current_page!=<span class="built_in">num</span><span class="number">-1</span>)&#123;</div><div class="line">                <span class="keyword">if</span>(<span class="built_in">num</span>&gt;=np)&#123;</div><div class="line">                    page_id=np<span class="number">-1</span>;</div><div class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">num</span>&lt;=<span class="number">1</span>)&#123;</div><div class="line">                    page_id=<span class="number">0</span>;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    page_id=<span class="built_in">num</span><span class="number">-1</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">//取得输入的数字调用pageSelected;</span></div><div class="line">                pageSelected(page_id,<span class="keyword">this</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>此方法用来获取用户输入的数字，并对数字有效性进行判断。若输入的数字大于最大分页数则跳转最后一页;若小于1则跳转到第一页;若不是number则不作反应。</p>
+<h3 id="2、绑定键盘事件函数"><a href="#2、绑定键盘事件函数" class="headerlink" title="2、绑定键盘事件函数"></a>2、绑定键盘事件函数</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">keybind</span><span class="params">(e)</span></span>&#123;</div><div class="line">            <span class="keyword">var</span> code=e.keyCode;</div><div class="line">            <span class="keyword">if</span>(code==(<span class="number">13</span>||<span class="number">108</span>))&#123;</div><div class="line">                goNum();</div><div class="line">            &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h3 id="3、判断是否添加跳转功能"><a href="#3、判断是否添加跳转功能" class="headerlink" title="3、判断是否添加跳转功能"></a>3、判断是否添加跳转功能</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*新加，判断是否添加go按钮*/</span></div><div class="line"><span class="keyword">if</span>(opts.ifGo&amp;&amp;<span class="built_in">np</span>&gt;=opts.ifGo)&#123;</div><div class="line">    <span class="built_in">var</span> inp=jQuery(<span class="string">"&lt;input class='input_num' type='text'/&gt;"</span>).bind(<span class="string">"keydown"</span>,keybind);</div><div class="line">    <span class="built_in">var</span> <span class="built_in">go</span>=jQuery(<span class="string">"&lt;span class='go'&gt;"</span>+opts.ifGo_text+<span class="string">"&lt;/span&gt;"</span>).bind(<span class="string">"click"</span>,goNum);</div><div class="line">    panel.<span class="built_in">append</span>(inp,<span class="built_in">go</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在drawlink主函数中添加判断是否绘制跳转按钮，条件是分页总数必须大于你设定的ifGo的值。若大于则创建input和go并绑定相应事件。</p>
+<h3 id="4、css修改"><a href="#4、css修改" class="headerlink" title="4、css修改"></a>4、css修改</h3><p>下载资源中包括了css文件，你可以随心所欲修改你的css样式。  </p>
+<h2 id="三、知识点"><a href="#三、知识点" class="headerlink" title="三、知识点"></a>三、知识点</h2><h3 id="1、js是值传递但是基本类型和引用类型表现不同。"><a href="#1、js是值传递但是基本类型和引用类型表现不同。" class="headerlink" title="1、js是值传递但是基本类型和引用类型表现不同。"></a>1、<strong>js是值传递但是基本类型和引用类型表现不同。</strong></h3><p>来上代码：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a=<span class="keyword">b=&#123;page:1&#125;;</span></div><div class="line"><span class="keyword">b.page=3;</span></div><div class="line">console.log(a)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
+<p>结果是page:3。上边a、b、包括后面的对象的地址都是指向堆中的同一个obj，所以b改变了a相应也会改变，同理上面的pannel和jq对象的引用相同panner改变this也会跟着改变。<br>强化理解<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">    obj.name=<span class="string">"小明"</span>;</div><div class="line">    obj=<span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">    obj.name=<span class="string">"小刚"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person=<span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">setName(person);</div><div class="line"><span class="built_in">console</span>.log(person.name)</div></pre></td></tr></table></figure></p>
+<p>结果：小明。首先创建一个person对象，person的地址就指向堆中一个object，调用setName是复制了person的地址给了obj，现在他们俩共同指向同一个object，于是改了obj的就相当于改了person的;接下来这个obj始乱终弃有指向了新的object2，也就和person再无任何瓜葛，他自己怎么玩是他自己的事情。所以最终结果是小明。  </p>
+<h3 id="2、注：dom元素和jq对象都是对象。"><a href="#2、注：dom元素和jq对象都是对象。" class="headerlink" title="2、注：dom元素和jq对象都是对象。"></a>2、注：dom元素和jq对象都是对象。</h3><p>$(“div”):这个类似于一个构造函数，把dom元素封装起来并添加相应jq的方法。dom元素可以直接影响这个新对象，但是这个对象不能影响dom元素（针对这个对象的操作，例如添加name方法）。<br><code>document.getElementById()</code>之类的：这是个选择器，他直接指向dom元素，dom和它相互影响。</p>
+<p>typeof用于检测简单类型(具体说他是确定一个变量是字符串、数值、布尔值、还是undefined的最佳工具，注：null返回object),返回一个字符串。  </p>
+<p>对于对象，我们更想知道的是什么类型的对象。所以引进了instanceof操作符。  </p>
+<p>person instanceof Object 这样来检测person是不是Object。  </p>
+<p>person instanceof Array 这样来检测person是不是Array。  </p>
+<h3 id="3、关于回调函数。"><a href="#3、关于回调函数。" class="headerlink" title="3、关于回调函数。"></a>3、关于回调函数。</h3><p>回调函数的意思就是在函数执行完毕调用的函数，而在这里使用参数的形式来设置回调函数，灵活性搞，可以任意设置回调函数。<br>pagination的回调函数的作用是显示对应分页的列表项内容,回调函数在用户每次点击分页链接的时候执行。<br>注意点：这里pagination的回调函数在分页创建时就调用了一次。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/07/01/console/" rel="next" title="console.log一个奇怪的问题">
+                <i class="fa fa-chevron-left"></i> console.log一个奇怪的问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2017/04/28/jq的四种绑定方式/" rel="prev" title="JQ的四种绑定方式">
+                JQ的四种绑定方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/touxiang.jpg"
+               alt="Lip" />
+          <p class="site-author-name" itemprop="name">Lip</p>
+           
+              <p class="site-description motion-element" itemprop="description">未知的命运，已知的抉择</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/blalablack" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、pagination使用方法"><span class="nav-number">1.</span> <span class="nav-text">一、pagination使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、使用方法"><span class="nav-number">1.1.</span> <span class="nav-text">1、使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、参数详解"><span class="nav-number">1.2.</span> <span class="nav-text">2、参数详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、使用举例"><span class="nav-number">1.3.</span> <span class="nav-text">3、使用举例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、原版"><span class="nav-number">1.3.1.</span> <span class="nav-text">1、原版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、页码输入跳转版"><span class="nav-number">1.3.2.</span> <span class="nav-text">2、页码输入跳转版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、实现ajax分页请求"><span class="nav-number">1.3.3.</span> <span class="nav-text">3、实现ajax分页请求</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、paginationJS跳转功能实现"><span class="nav-number">2.</span> <span class="nav-text">二、paginationJS跳转功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、获取用户输入数字方法"><span class="nav-number">2.1.</span> <span class="nav-text">1、获取用户输入数字方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、绑定键盘事件函数"><span class="nav-number">2.2.</span> <span class="nav-text">2、绑定键盘事件函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、判断是否添加跳转功能"><span class="nav-number">2.3.</span> <span class="nav-text">3、判断是否添加跳转功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、css修改"><span class="nav-number">2.4.</span> <span class="nav-text">4、css修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、知识点"><span class="nav-number">3.</span> <span class="nav-text">三、知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、js是值传递但是基本类型和引用类型表现不同。"><span class="nav-number">3.1.</span> <span class="nav-text">1、js是值传递但是基本类型和引用类型表现不同。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、注：dom元素和jq对象都是对象。"><span class="nav-number">3.2.</span> <span class="nav-text">2、注：dom元素和jq对象都是对象。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、关于回调函数。"><span class="nav-number">3.3.</span> <span class="nav-text">3、关于回调函数。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lip</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      $('#local-search-input').focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            var resultItems = [];
+            if (this.value.trim().length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCountInArticle = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCountInArticle = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  var resultItem = '';
+
+                  function highlightKeyword(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+
+                    var matchText = text.substring(start, end);
+                    var matchResult = [];
+                    var prevEnd = 0;
+                    while (position + word.length <= end && index.length != 0) {
+
+                      // highlight keyword
+
+                      var wordBegin = position - start;
+                      var wordEnd = position - start + word.length;
+                      matchResult.push(matchText.substring(prevEnd, wordBegin));
+                      matchResult.push("<b class=\"search-keyword\">" + matchText.substring(wordBegin, wordEnd) + "</b>");
+
+                      // move to next position of hit
+
+                      index.pop();
+                      prevEnd = wordEnd;
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (prevEnd > position - start) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    matchResult.push(matchText.substring(prevEnd));
+                    return matchResult.join('');
+                  }
+
+                  // sort index by position of keyword
+
+                  indexOfTitle.sort(function (itemLeft, itemRight) {
+                    return itemRight.position - itemLeft.position;
+                  });
+
+                  indexOfContent.sort(function (itemLeft, itemRight) {
+                    return itemRight.position - itemLeft.position;
+                  });
+
+                  // highlight title
+
+                  if (indexOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, 0, title.length, indexOfTitle) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  // highlight content
+
+                  var resultUpperBound = parseInt(1);
+                  var withoutUpperBound = false;
+                  if (resultUpperBound === -1) {
+                    withoutUpperBound = true;
+                  }
+                  var currentResultNum = 0;
+                  while (indexOfContent.length != 0 && (withoutUpperBound || (currentResultNum < resultUpperBound))) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                    "<p class=\"search-result\">" + highlightKeyword(content, start, end, indexOfContent) +
+                    "...</p>" + "</a>";
+                    currentResultNum++;
+                  }
+                  resultItem += "</li>";
+                  resultItems.push({item: resultItem, hitCount: hitCountInArticle, id: resultItems.length});
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.hitCount != resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultLeft.id - resultRight.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result, i) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              $resultContent.innerHTML = searchResultList;
+            }
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
